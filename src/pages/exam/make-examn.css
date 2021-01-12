@@ -1,0 +1,157 @@
+.form{
+  padding: 10px;
+}
+
+.header {
+  margin: 0px 10px;
+  overflow: hidden;
+}
+
+.info-exam {
+  margin: 10px;
+  overflow: hidden;
+}
+
+.separador {
+  background-color:var(--color-primary);
+  margin: 5px 20px;
+  border: 1px solid #00A9DD;
+}
+
+/*.opcion:hover {
+  background-color: aquamarine;
+  transform: scale(1.01);
+  transition: background-color .5s;
+}*/
+
+.opcion {
+  border: 1px solid #00A9DD;
+  border-radius: 7px;
+  padding: 10px 5px;
+  align-items: center;
+  align-content: center;
+  background-color: #fff;
+  cursor: pointer;
+  margin: 10px;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 1.2em;
+}
+
+.opcion_selected {
+  background-color: #0984e3;
+  color: #fff;
+}
+
+.opcion h6 {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.paginador {
+  display: inline-block;
+  width: 100%;
+}
+
+.btn-paginador {
+  border: 1px solid #0984e3;
+  color: white;
+  font-weight: bold;
+  border-radius: 15px;
+  padding: 7px 15px;
+  align-items: center;
+  align-content: center;
+  background-color: #0984e3;
+  cursor: pointer;
+  margin: 10px;
+}
+
+/*.btn-paginador:hover {
+  background-color: aquamarine;
+  transform: scale(1.01);
+  transition: background-color .5s;
+}*/
+
+.indice-pregunta {
+  text-align: center;
+  align-content: center;
+}
+
+.descripcion-pregunta {
+  margin-top: 10px;
+  text-align: center;
+  align-content: center;
+}
+
+.descripcion-pregunta h6 {
+  font-size: 1.1em;
+}
+
+.indice-pregunta h6 {
+  background-color: #0984e3;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: #fff;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5em;
+}
+
+.btn-atras {
+  float: left;
+}
+
+.btn-siguiente {
+  float: right;
+}
+
+.hint-pregunta {
+  cursor: pointer;
+  background-color: aquamarine;
+}
+
+.container-body {
+  margin: 10px;
+}
+
+.container-pregunta {
+  border: 1px solid #00A9DD;
+  border-radius: 7px;
+  padding: 10px;
+}
+
+.title-exam {
+  background: linear-gradient(to bottom, #0984e3, #00A9DD);
+  color: #fff;
+  text-align: center;
+  margin: 10px 20px;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.title-exam-preguntas {
+  float: left;
+  font-size: 0.8em;
+}
+
+.title-exam-tiempo {
+  float: right;
+  font-size: 0.8em;
+}
+
+.info-exam {
+  padding: 5px 15px;
+  text-align: center;
+}
+
+.text-respuesta{
+  width: 100%;
+  border: 1px solid #00A9DD;
+  border-radius: 7px;
+  padding: 5px;
+  font-size: 1.4em;
+  font-family: inherit;
+}
