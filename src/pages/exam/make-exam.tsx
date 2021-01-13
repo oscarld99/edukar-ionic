@@ -106,7 +106,7 @@ const Exam: React.FC = () => {
               <div className="container-pregunta" >
                 <div className="pregunta">
                   <div className="indice-pregunta">
-                    <h6>(paginadorPreguntas + 1)</h6>
+                    <h6>{(paginadorPreguntas + 1)}</h6>
                   </div>
                   <div className="descripcion-pregunta">
                     <h6>{pregunta.descripcion}</h6>

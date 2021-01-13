@@ -1,5 +1,4 @@
 import {
-  IonButton,
   IonContent,
   IonIcon,
   IonItem,
@@ -9,7 +8,7 @@ import {
   IonMenu,
   IonMenuToggle,
 } from '@ionic/react';
-import { lockClosed} from 'ionicons/icons'
+import { lockClosed } from 'ionicons/icons'
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { appPages } from '../pages/routes'
@@ -30,14 +29,19 @@ const Menu: React.FC = () => {
           </div>
           <IonListHeader className="text-user">OSCAR DAVID LORA DE SALES</IonListHeader>
           {appPages.map((appPage, index) => {
-            return (
-              <IonMenuToggle key={index} autoHide={false}>
-                <IonItem className={location.pathname === appPage.url ? 'selected' : ''} routerLink={appPage.url} routerDirection="none" lines="none" detail={false}>
-                  <IonIcon slot="start" md={appPage.mdIcon} />
-                  <IonLabel>{appPage.title}</IonLabel>
-                </IonItem>
-              </IonMenuToggle>
-            );
+            if (appPage.title === "") {
+              return null;
+            } else {
+              return (
+                <IonMenuToggle key={index} autoHide={false}>
+                  <IonItem className={location.pathname === appPage.url ? 'selected' : ''} routerLink={appPage.url} routerDirection="none" lines="none" detail={false}>
+                    <IonIcon slot="start" md={appPage.mdIcon} />
+                    <IonLabel>{appPage.title}</IonLabel>
+                  </IonItem>
+                </IonMenuToggle>
+              );
+            }
+
           })}
           <IonMenuToggle key={7} autoHide={false}>
             <IonItem routerLink={"/login"} routerDirection="none" lines="none" detail={false}>

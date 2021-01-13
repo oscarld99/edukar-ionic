@@ -1,7 +1,11 @@
-import React, { } from 'react';
+import { IonIcon } from '@ionic/react';
+import { search } from 'ionicons/icons';
+import React, { useState } from 'react';
 import Card from '../../components/card/Card';
 import './examenes.css'
 const Examenes: React.FC = () => {
+   
+    const [buscador, setBuscador] = useState('')
     const info: any = {
         titulo: 'Quiz de matematicas',
         codigo: 'EDX5480',
@@ -14,10 +18,20 @@ const Examenes: React.FC = () => {
         <div>
 
             <div className="buscador">
+                <div className="input-group">
+                    <i><IonIcon slot="start" md={search} /></i>
+                    <input
+                        className="input-loguin br-principal"
+                        type="text"
+                        placeholder="Codigo"
+                        value={buscador}
+                        onChange={(e) => setBuscador(e.target.value)}
+                    />
 
+                </div>
             </div>
             <div className="contenedor-examenes">
-                <Card {...info}></Card>
+                <Card {...info} ></Card>
                 <Card {...info}></Card>
                 <Card {...info}></Card>
                 <Card {...info}></Card>

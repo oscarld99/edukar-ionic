@@ -26,8 +26,8 @@
 
 .opcion {
   border: 1px solid #00A9DD;
-  border-radius: 7px;
-  padding: 10px 5px;
+  border-radius: 15px;
+  padding: 3px;
   align-items: center;
   align-content: center;
   background-color: #fff;
@@ -44,8 +44,7 @@
 }
 
 .opcion h6 {
-  margin-left: auto;
-  margin-right: auto;
+  margin:2px auto;
 }
 
 .paginador {
@@ -143,8 +142,9 @@
 }
 
 .info-exam {
-  padding: 5px 15px;
-  text-align: center;
+  padding: 5px 5px;
+  margin:0;
+  text-align: justify;
 }
 
 .text-respuesta{
@@ -154,4 +154,9 @@
   padding: 5px;
   font-size: 1.4em;
   font-family: inherit;
+}
+.observaciones-exam{
+  font-size: 0.6em;
+  color: gray;
+  margin:0;
 }

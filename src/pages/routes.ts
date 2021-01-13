@@ -1,6 +1,9 @@
 import { AppPage } from '../interfaces/settings'
-import { newspaper, checkmarkDone,person ,lockClosed,planet,settings,notifications} from 'ionicons/icons'
+import { newspaper, checkmarkDone,person ,globeOutline,settings,notifications} from 'ionicons/icons'
+//VISTAS
+import Perfil from './perfil/perfil'
 import Examenes from './examenes/examenes'
+import MakeExam from './exam/make-exam'
 
 export const appPages: AppPage[] = [
   {
@@ -8,7 +11,7 @@ export const appPages: AppPage[] = [
     title: 'Perfil',
     url: '/page/perfil',
     mdIcon: person,
-    Component: Examenes
+    Component: Perfil
   }, {
     index:2,
     title: 'Examenes',
@@ -37,7 +40,13 @@ export const appPages: AppPage[] = [
     index:6,
     title: 'Sitio Oficial',
     url: '/page/sitio-oficial',
-    mdIcon: planet,
+    mdIcon: globeOutline,
     Component: Examenes
+  },{
+    index:8,
+    title: '',
+    url: '/page/make-exam',
+    mdIcon: globeOutline,
+    Component: MakeExam
   }
 ]

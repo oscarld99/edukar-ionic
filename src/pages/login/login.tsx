@@ -1,5 +1,4 @@
 import React, { useState, useRef } from 'react';
-import { useParams } from 'react-router';
 import {
     IonIcon,
     IonContent,

@@ -28,7 +28,7 @@
 .input-group i {
     display: flex;
     background-color: #0984e3;
-    padding: 8px;
+    padding: 8px 12px;
     color: #fff;
     font-weight: bold;
     border-radius: 10% 0 0 10%;
@@ -37,7 +37,7 @@
 .input-loguin {
     flex: 1;
     border: none;
-    border-radius: 0 10% 10% 0;
+    border-radius: 0 10px 10px 0;
     padding: 10px;
     color: black;
 }

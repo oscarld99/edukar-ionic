@@ -1,4 +1,4 @@
-import { IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import { IonContent, IonMenuButton, IonPage } from '@ionic/react';
 import React from 'react';
 import { useParams } from 'react-router';
 import { appPages } from './routes'
@@ -25,6 +25,8 @@ const Page: React.FC = (props) => {
               appPages.map(({ Component, title, index }) => {
                 if (title.toLowerCase().trim() === name.toLowerCase().trim()) {
                   return (<Component key={index} />);
+                }else{
+                  return null
                 }
               })
             }
