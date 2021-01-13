@@ -1,18 +1,12 @@
 import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import React from 'react';
 import { useParams } from 'react-router';
-import {
-  Switch,
-  Route,
-} from "react-router-dom";
 import { appPages } from './routes'
-import Examenes from './examenes/examenes'
 import './Page.css';
 
 const Page: React.FC = (props) => {
 
-  const { name } = useParams<{ name: string; }>();
-  console.log(props)
+  let { name } = useParams<{ name: string; }>()
   return (
     <IonPage>
       <IonHeader>
@@ -34,11 +28,12 @@ const Page: React.FC = (props) => {
           {
             appPages.map(({ Component, title }) => {
               if (title.toLowerCase().trim() === name.toLowerCase().trim()) {
-                return (<Component />);
+                return (<Component />)
+              } else {
+                return false
               }
             })
           }
-       
         </main>
       </IonContent>
     </IonPage>
