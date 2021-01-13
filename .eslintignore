@@ -1,0 +1,11 @@
+.vscode/ 
+node_modules/
+
+# Build products
+build/
+dist/
+tests/
+src/serviceWorker.ts
+src/setupTests.ts
+src/react-app-env.d.ts
+src/App.test.ts

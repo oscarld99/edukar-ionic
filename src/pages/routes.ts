@@ -1,5 +1,5 @@
-import { AppPage } from "../interfaces/settings";
-import { newspaper, barChart } from 'ionicons/icons';
+import { AppPage } from '../interfaces/settings'
+import { newspaper, barChart } from 'ionicons/icons'
 import Examenes from './examenes/examenes'
 
 export const appPages: AppPage[] = [
@@ -14,4 +14,4 @@ export const appPages: AppPage[] = [
     mdIcon: barChart,
     Component: Examenes
   }
-];
+]
