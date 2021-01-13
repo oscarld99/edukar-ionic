@@ -6,7 +6,8 @@ import './Page.css';
 
 const Page: React.FC = (props) => {
 
-  let { name } = useParams<{ name: string; }>()
+  const { name } = useParams<{ name: string; }>();
+  console.log(props)
   return (
     <IonPage>
       <IonHeader>
@@ -28,12 +29,11 @@ const Page: React.FC = (props) => {
           {
             appPages.map(({ Component, title }) => {
               if (title.toLowerCase().trim() === name.toLowerCase().trim()) {
-                return (<Component />)
-              } else {
-                return false
+                return (<Component />);
               }
             })
           }
+       
         </main>
       </IonContent>
     </IonPage>

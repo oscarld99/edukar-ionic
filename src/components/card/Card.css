@@ -1,0 +1,29 @@
+.card{
+    width: 80%;
+    margin: auto;
+    padding: .5em 1em;
+    background: linear-gradient(red, green);
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px rgba(0,0,0,.45);
+    color: white;
+    text-transform: uppercase;
+}
+.card__title{
+    margin: 0;
+    margin-bottom: .5em;
+    border-bottom: 1px solid white;
+    text-align: center;
+}
+
+.card__details .card__item {
+   display: flex;
+   justify-content: space-between;
+   margin-bottom: .5em;
+}
+
+.card__label{
+    font-size: .75em;
+}
+.card__info{
+    font-size: .9em;
+}
