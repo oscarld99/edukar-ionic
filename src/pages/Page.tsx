@@ -1,7 +1,8 @@
-import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import { IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import React from 'react';
 import { useParams } from 'react-router';
 import { appPages } from './routes'
+import LogoHeader from '../assets/images/logo.png'
 import './Page.css';
 
 const Page: React.FC = (props) => {
@@ -10,30 +11,26 @@ const Page: React.FC = (props) => {
   console.log(props)
   return (
     <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonButtons slot="start">
-            <IonMenuButton />
-          </IonButtons>
-          <IonTitle>{name}</IonTitle>
-        </IonToolbar>
-      </IonHeader>
-
       <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">{name}</IonTitle>
-          </IonToolbar>
-        </IonHeader>
         <main className="main">
-          {
-            appPages.map(({ Component, title }) => {
-              if (title.toLowerCase().trim() === name.toLowerCase().trim()) {
-                return (<Component />);
-              }
-            })
-          }
-       
+          <div className="menuButton">
+            <IonMenuButton />
+          </div>
+          <div className="headerPage">
+            <img src={LogoHeader} alt="logo-edukar" />
+            <h5 className="page-name">{name}</h5>
+          </div>
+          <div className="contenedor-children">
+            {
+              appPages.map(({ Component, title, index }) => {
+                if (title.toLowerCase().trim() === name.toLowerCase().trim()) {
+                  return (<Component key={index} />);
+                }
+              })
+            }
+          </div>
+
+
         </main>
       </IonContent>
     </IonPage>

@@ -13,7 +13,7 @@ const Card: React.FC = ({titulo,codigo,tiempo,cierre,numeroPreguntas,estado,...p
   
     return (
         <div className="card">
-           <h2 className="card__title">{codigo}</h2> 
+           <h2 className="card__title">{titulo}</h2> 
            <div className="card__details">
                <div className="card__item">
                    <span className="card__label">codigo:</span>

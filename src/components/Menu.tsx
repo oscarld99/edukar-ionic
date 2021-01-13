@@ -8,28 +8,27 @@ import {
   IonListHeader,
   IonMenu,
   IonMenuToggle,
-  IonNote,
 } from '@ionic/react';
-import { useHistory } from 'react-router-dom';
+import { lockClosed} from 'ionicons/icons'
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { appPages } from '../pages/routes'
+import Usuario from '../assets/images/usuario.png'
 import './Menu.css';
 
 
 const Menu: React.FC = () => {
   const location = useLocation();
-  const history = useHistory();
-  const logOut = () => {
-    history.push("/login");
-  }
+
 
   return (
     <IonMenu contentId="main" type="overlay">
       <IonContent>
         <IonList id="inbox-list">
-          <IonListHeader>Devitech</IonListHeader>
-          <IonNote>info@devitech.com.co</IonNote>
+          <div className="img-user">
+            <img src={Usuario} alt="user-edukar" />
+          </div>
+          <IonListHeader className="text-user">OSCAR DAVID LORA DE SALES</IonListHeader>
           {appPages.map((appPage, index) => {
             return (
               <IonMenuToggle key={index} autoHide={false}>
@@ -40,11 +39,13 @@ const Menu: React.FC = () => {
               </IonMenuToggle>
             );
           })}
+          <IonMenuToggle key={7} autoHide={false}>
+            <IonItem routerLink={"/login"} routerDirection="none" lines="none" detail={false}>
+              <IonIcon slot="start" md={lockClosed} />
+              <IonLabel>Cerrar Sesion</IonLabel>
+            </IonItem>
+          </IonMenuToggle>
         </IonList>
-        <IonList id="inbox-list">
-          <IonButton className="btn-loguot" shape="round" onClick={()=>logOut()}>CERRAR SESION</IonButton>
-        </IonList>
-
       </IonContent>
     </IonMenu>
   );
