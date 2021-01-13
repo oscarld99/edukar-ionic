@@ -29,7 +29,6 @@ const Login: React.FC = () => {
     return (
         <IonPage>
             <IonContent fullscreen>
-
                 <div className="root-login">
                     <div className="img-logo">
                         <img src={Logologin} alt="logo-edukar" />
