@@ -1,41 +1,40 @@
-import React, { useState } from 'react';
-import { IonContent, IonPage } from '@ionic/react';
+import React, { useState } from 'react'
+import { IonContent, IonPage } from '@ionic/react'
 import exam1 from '../../test/task1'
 import './make-examn.css'
 
 const Exam: React.FC = () => {
-
   const [nose, setNose] = useState({
     quiz: exam1,
     paginadorPreguntas: 0,
     respondidas: []
   })
 
-  const validarClases = (opcion: any) => {
-    let { respondidas } = nose
-    let clases = "opcion"
+  const validarClases = (opcion: any): string => {
+    const { respondidas } = nose
+    let clases = 'opcion'
     try {
       if (opcion.multiple) {
-        let respondidass: any = respondidas
+        const respondidass: any = respondidas
         if (respondidass[opcion.indice].includes(opcion.valor)) {
-          clases += " opcion_selected"
+          clases += ' opcion_selected'
         }
       } else {
         if (respondidas[opcion.indice] === opcion.valor) {
-          clases += " opcion_selected"
+          clases += ' opcion_selected'
         }
       }
     } catch (error) { }
-    return clases;
+    return clases
   }
 
-  const handleNext = () => {
+  const handleNext = (): void => {
     const newNose = { ...nose }
     newNose.paginadorPreguntas = nose.paginadorPreguntas + 1
     setNose(newNose)
   }
 
-  const handleBack = () => {
+  const handleBack = (): void => {
     const newNose = { ...nose }
     newNose.paginadorPreguntas = nose.paginadorPreguntas - 1
     setNose(newNose)
@@ -43,7 +42,7 @@ const Exam: React.FC = () => {
 
   const handleChange = (opcion: any) => (event: any) => {
     const { respondidas } = nose
-    let auxiliar: any = respondidas
+    const auxiliar: any = respondidas
     auxiliar[opcion.indice] = event.target.value
 
     const newNose = { ...nose }
@@ -51,9 +50,9 @@ const Exam: React.FC = () => {
     setNose(newNose)
   }
 
-  const handleSeleccionar = (opcion: any) => {
+  const handleSeleccionar = (opcion: any): void => {
     const { respondidas } = nose
-    let auxiliar: any = respondidas
+    const auxiliar: any = respondidas
     if (opcion.multiple) {
       if (!auxiliar[opcion.indice]) {
         auxiliar[opcion.indice] = []
@@ -91,10 +90,10 @@ const Exam: React.FC = () => {
               <h3 >{quiz.nombre}</h3>
             </div>
             <div className="title-exam-preguntas">
-              <h3 >{quiz.preguntas.length + " preguntas (" + quiz.tiempo + ")"}</h3>
+              <h3 >{quiz.preguntas.length + ' preguntas ' + quiz.tiempo}</h3>
             </div>
             <div className="title-exam-tiempo">
-              <h3 >{"Tiempo transcurrido: 00:18:58"}</h3>
+              <h3 >{'Tiempo transcurrido: 00:18:58'}</h3>
             </div>
           </section>
           <hr className="separador" />
@@ -115,14 +114,12 @@ const Exam: React.FC = () => {
                 </div>
                 <div className="opciones">
                   {
-                    pregunta.tipo === "ABIERTA"
-                      ?
-                      <textarea
-                        className="text-respuesta" value={respondidas[paginadorPreguntas] || ""}
+                    pregunta.tipo === 'ABIERTA'
+                      ? <textarea
+                        className="text-respuesta" value={respondidas[paginadorPreguntas] || ''}
                         // rows="3"
                         onChange={handleChange(pregunta)} />
-                      :
-                      pregunta.opciones.map((opcion: any) => {
+                      : pregunta.opciones.map((opcion: any) => {
                         opcion.multiple = pregunta.multiple
                         opcion.indice = pregunta.indice
                         opcion.numero_respuestas = pregunta.numero_respuestas
@@ -132,29 +129,26 @@ const Exam: React.FC = () => {
                           </div>
                         )
                       })
-
                   }
                 </div>
               </div>
               <div className="paginador">
                 {
-                  paginadorPreguntas !== 0
-                  &&
-                  <button className="btn-paginador btn-atras"
+                  paginadorPreguntas !== 0 && <button className="btn-paginador btn-atras"
                     onClick={() => handleBack()}>
                     ATRAS
-          </button>
+                  </button>
                 }
                 {
                   paginadorPreguntas === (quiz.preguntas.length - 1)
                     ? <button className="btn-paginador btn-siguiente"
                       onClick={() => console.log(respondidas)}>
                       TERMINAR
-        </button>
+                    </button>
                     : <button className="btn-paginador btn-siguiente"
                       onClick={() => handleNext()}>
                       SIGUIENTE
-          </button>
+                    </button>
                 }
               </div>
             </div>
@@ -164,6 +158,6 @@ const Exam: React.FC = () => {
       </IonContent>
     </IonPage>
   )
-};
+}
 
-export default Exam;
+export default Exam
