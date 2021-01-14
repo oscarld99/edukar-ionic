@@ -45,6 +45,8 @@
 
 .opcion h6 {
   margin:2px auto;
+
+  font-weight: bold;
 }
 
 .paginador {
@@ -76,15 +78,21 @@
   align-content: center;
 }
 
+.indice-pregunta h6{
+  font-weight: bold;
+}
+
 .descripcion-pregunta {
-  margin-top: 10px;
+  margin-top: 5px;
   text-align: center;
   align-content: center;
 }
-
-.descripcion-pregunta h6 {
-  font-size: 1.1em;
+.descripcion-pregunta h6{
+  margin-top: 5px;
+  font-weight: bold;
+  font-size: 0.9em;
 }
+
 
 .indice-pregunta h6 {
   background-color: #0984e3;
@@ -128,17 +136,32 @@
   text-align: center;
   margin: 10px 20px;
   padding: 8px;
-  border-radius: 8px;
+  border-radius: 10px;
 }
+
+.title-exam h3{
+  margin: 5px ;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
 
 .title-exam-preguntas {
   float: left;
   font-size: 0.8em;
 }
 
+.title-exam-preguntas h3 {
+  font-size: 1em;
+}
+
 .title-exam-tiempo {
   float: right;
   font-size: 0.8em;
+}
+
+.title-exam-tiempo h3 {
+  font-size: 1em;
 }
 
 .info-exam {
