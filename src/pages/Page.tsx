@@ -5,7 +5,7 @@ import { appPages } from './routes'
 import LogoHeader from '../assets/images/logo.png'
 import './Page.css';
 
-const Page: React.FC = (props) => {
+const Page: React.FC = () => {
 
   const { name } = useParams<{ name: string; }>();
   return (

@@ -3,18 +3,31 @@ import {
     IonIcon,
     IonContent,
     IonPage,
-    IonAlert,
-    IonicSafeString
+    IonToast
 } from '@ionic/react';
+import { Plugins } from '@capacitor/core'
 import Logologin from '../../assets/images/logoAppLogin.png'
 import Usuario from '../../assets/images/usuario.png'
 import { person, lockClosed } from 'ionicons/icons';
 import { useHistory } from 'react-router-dom';
 import './login.css'
+const { App } = Plugins;
 
 
-const Login: React.FC = (props) => {
-
+const Login: React.FC = (props:any) => {
+    const [counter, setCounter] = useState(0)
+    document.addEventListener('ionBackButton', () => {
+        if (props.location.pathname === "/login") {
+            if (counter) {
+                App.exitApp();
+            } else {
+                setTimeout(()=>{
+                    setCounter(0) 
+                },5000)
+                setCounter(1);
+            }
+        }
+    })
     const inputRef: any = useRef();
     const [usuario, setUsuario] = useState("");
     const [clave, setClave] = useState("");
@@ -25,8 +38,6 @@ const Login: React.FC = (props) => {
             history.push("/page/evaluaciones");
         } else {
             setShowAlert1(true);
-            ionic.Platform.exitApp(); // stops the app
-            window.close();
         }
     }
     return (
@@ -77,14 +88,17 @@ const Login: React.FC = (props) => {
                             </button>
 
                     </div>
-                    <IonAlert
+                    <IonToast
                         isOpen={showAlert1}
                         onDidDismiss={() => setShowAlert1(false)}
-                        cssClass='my-custom-class'
-                        header={'Error!'}
-                        subHeader={''}
-                        message={'Credenciales invalidas.'}
-                        buttons={['OK']}
+                        message='Credenciales invalidas'
+                        duration={500}
+                        color='danger'
+                    />
+                    <IonToast
+                        isOpen={counter===1}
+                        message="Dar otra vez atras para salir."
+                        duration={200}
                     />
                 </div>
             </IonContent>
