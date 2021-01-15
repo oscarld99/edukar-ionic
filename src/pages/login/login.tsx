@@ -14,9 +14,12 @@ import Usuario from '../../assets/images/usuario.png'
 import './login.css'
 import SigninService from '../../services/access/SigninService'
 import { Logger } from '../../helpers/Logger'
+import StorageJobs from '../../jobs/Storage'
 const { App } = Plugins
 
 const Login: React.FC = (props: any) => {
+  const storageJobs = StorageJobs.getInstance()
+
   const [counter, setCounter] = useState(0)
   document.addEventListener('ionBackButton', () => {
     if (props.location.pathname === '/login') {
@@ -41,7 +44,9 @@ const Login: React.FC = (props: any) => {
   const iniciar = async (): Promise<void> => {
     const result = await SigninService({ usuario, clave })
     if (typeof result !== 'string') {
-      Logger.info(result)
+      storageJobs.setObject('user', result)
+      const prueba = await storageJobs.getObject('user')
+      console.log(prueba)
       history.push('/page/evaluaciones')
     } else {
       const message = result
