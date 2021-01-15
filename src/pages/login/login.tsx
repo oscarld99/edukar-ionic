@@ -3,7 +3,8 @@ import {
     IonIcon,
     IonContent,
     IonPage,
-    IonAlert
+    IonAlert,
+    IonicSafeString
 } from '@ionic/react';
 import Logologin from '../../assets/images/logoAppLogin.png'
 import Usuario from '../../assets/images/usuario.png'
@@ -12,7 +13,7 @@ import { useHistory } from 'react-router-dom';
 import './login.css'
 
 
-const Login: React.FC = () => {
+const Login: React.FC = (props) => {
 
     const inputRef: any = useRef();
     const [usuario, setUsuario] = useState("");
@@ -24,6 +25,8 @@ const Login: React.FC = () => {
             history.push("/page/evaluaciones");
         } else {
             setShowAlert1(true);
+            ionic.Platform.exitApp(); // stops the app
+            window.close();
         }
     }
     return (

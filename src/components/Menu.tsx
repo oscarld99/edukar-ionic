@@ -26,6 +26,10 @@ const Menu: React.FC = () => {
       setDisabled(false)
     }
   })
+  
+  const sitiOficial = () =>{
+    console.log("goto the apgina")
+  }
 
   return (
     <IonMenu contentId="main" type="overlay" disabled={disabled}>
@@ -56,6 +60,7 @@ const Menu: React.FC = () => {
               <IonLabel>Cerrar Sesion</IonLabel>
             </IonItem>
           </IonMenuToggle>
+         
         </IonList>
       </IonContent>
     </IonMenu>

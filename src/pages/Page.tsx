@@ -25,9 +25,6 @@ const Page: React.FC = (props) => {
                 if (title.toLowerCase().trim() === name.toLowerCase().trim()) {
                   return (<Component key={index} />);
                 } else {
-                  console.log(title.toLowerCase().trim(),
-                    name.toLowerCase().trim()
-                  )
                   return null
                 }
               })
