@@ -13,7 +13,6 @@ import Logologin from '../../assets/images/logoAppLogin.png'
 import Usuario from '../../assets/images/usuario.png'
 import './login.css'
 import SigninService from '../../services/access/SigninService'
-import { SuccessResponseStatus } from '../../helpers/apiResponse'
 import { Logger } from '../../helpers/Logger'
 const { App } = Plugins
 
