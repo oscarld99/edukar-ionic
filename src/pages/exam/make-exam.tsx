@@ -91,7 +91,7 @@ const Exam: React.FC = () => {
               <h3 >{quiz.nombre}</h3>
             </div>
             <div className="title-exam-preguntas">
-              <h3 >{quiz.preguntas.length + ' preguntas ' + quiz.tiempo}</h3>
+              <h3 >{`${quiz.preguntas.length} preguntas ${quiz.tiempo}`}</h3>
             </div>
             <div className="title-exam-tiempo">
               <h3 >{'Tiempo transcurrido: 00:18:58'}</h3>
