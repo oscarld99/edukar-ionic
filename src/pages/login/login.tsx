@@ -13,7 +13,6 @@ import Logologin from '../../assets/images/logoAppLogin.png'
 import Usuario from '../../assets/images/usuario.png'
 import './login.css'
 import SigninService from '../../services/access/SigninService'
-import { Logger } from '../../helpers/Logger'
 import StorageJobs from '../../jobs/Storage'
 const { App } = Plugins
 

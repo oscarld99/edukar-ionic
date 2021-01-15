@@ -1,12 +1,12 @@
 const testMatematicas = {
   id: 1,
   nombre: 'EVALUACION DE MATEMATICAS',
-  tiempo: 5000, //tiempo en minutos
+  tiempo: 5000, // tiempo en minutos
   tipo: 'EXAMEN',
-  puntaje_maximo: 5.0,//float
-  codigo: "#34324re",
-  fecha_activacion: "string fromat YYYY-MM-DD HH:mm",
-  fecha_cierre: "string fromat YYYY-MM-DD HH:mm",
+  puntaje_maximo: 5.0, // float
+  codigo: '#34324re',
+  fecha_activacion: 'string fromat YYYY-MM-DD HH:mm',
+  fecha_cierre: 'string fromat YYYY-MM-DD HH:mm',
   observaciones: 'TIENES 15 MINUTOS PARA TERMINAR ESTE EXAMEN, ESTE EXAMEN ES INDIVIDUAL Y ANTE CUALQUIER INDICIO DE COPIA ESTE SERA ANULADO.',
   preguntas: [{
     indice: 0,
@@ -15,9 +15,9 @@ const testMatematicas = {
     ayuda: '',
     multiple: false,
     numero_respuestas: 1,
-    tipo_valor: '%', //va pegado
+    tipo_valor: '%', // va pegado
     valor: 20, //
-    tipo: 'ICFES', //por ahora pegado
+    tipo: 'ICFES', // por ahora pegado
     opciones: [{
       descripcion: '266 huesos',
       valor: 266
@@ -161,7 +161,7 @@ const testMatematicas = {
       descripcion: 'REGION CARIBE',
       valor: 123
     }]
-  },]
+  }]
 }
 
-export default testMatematicas;
+export default testMatematicas

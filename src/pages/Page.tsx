@@ -1,13 +1,12 @@
-import { IonContent, IonMenuButton, IonPage } from '@ionic/react';
-import React from 'react';
-import { useParams } from 'react-router';
+import { IonContent, IonMenuButton, IonPage } from '@ionic/react'
+import React from 'react'
+import { useParams } from 'react-router'
 import { appPages } from './routes'
 import LogoHeader from '../assets/images/logo.png'
-import './Page.css';
+import './Page.css'
 
 const Page: React.FC = () => {
-
-  const { name } = useParams<{ name: string; }>();
+  const { name } = useParams<{ name: string }>()
   return (
     <IonPage>
       <IonContent fullscreen>
@@ -23,7 +22,7 @@ const Page: React.FC = () => {
             {
               appPages.map(({ Component, title, index }) => {
                 if (title.toLowerCase().trim() === name.toLowerCase().trim()) {
-                  return (<Component key={index} />);
+                  return (<Component key={index} />)
                 } else {
                   return null
                 }
@@ -31,11 +30,10 @@ const Page: React.FC = () => {
             }
           </div>
 
-
         </main>
       </IonContent>
     </IonPage>
-  );
-};
+  )
+}
 
-export default Page;
+export default Page

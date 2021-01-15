@@ -114,12 +114,11 @@ const Exam: React.FC = () => {
                   {
                     pregunta.imagen
                       ? <div className="descripcion-imagen-pregunta">
-                        <img src={`${serverMultimedia}${imgExamenes}${quiz.id}/${pregunta.indice}.png`} alt={"imagen-pregunta"} />
+                        <img src={`${serverMultimedia}${imgExamenes}${quiz.id}/${pregunta.indice}.png`} alt={'imagen-pregunta'} />
                       </div>
                       : null
 
                   }
-
 
                 </div>
                 <div className="opciones">
