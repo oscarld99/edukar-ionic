@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { Plugins } from '@capacitor/core'
 
 const { Storage } = Plugins
@@ -13,41 +12,42 @@ export default class StorageJobs {
     return StorageJobs.instance
   }
 
-  async setObject (key: string, obj: any) {
+  async setObject (key: string, obj: any): Promise<void> {
     await Storage.set({
       key: key,
       value: JSON.stringify(obj)
     })
   }
 
-  async getObject (key: string) {
-    const ret = await Storage.get({ key })
-    const obj = JSON.parse(ret.value + '')
+  async getObject<T> (key: string): Promise<T | null> {
+    const { value } = await Storage.get({ key })
+    if (value === null) return value
+    const obj = JSON.parse(value)
     return obj
   }
 
-  /* async setItem () {
+  async setItem (key: string, value: string): Promise<void> {
     await Storage.set({
-      key: 'name',
-      value: 'Max'
+      key,
+      value
     })
   }
 
-  async getItem () {
-    const { value } = await Storage.get({ key: 'name' })
-    console.log('Got item: ', value)
+  async getItem (key: string): Promise<string | null> {
+    const { value } = await Storage.get({ key })
+    return value
   }
 
-  async removeItem () {
-    await Storage.remove({ key: 'name' })
+  async removeItem (key: string): Promise<void> {
+    await Storage.remove({ key })
   }
 
-  async keys () {
+  async keys (): Promise<string[]> {
     const { keys } = await Storage.keys()
-    console.log('Got keys: ', keys)
-  } */
+    return keys
+  }
 
-  async clear () {
+  async clear (): Promise<void> {
     await Storage.clear()
   }
 }
