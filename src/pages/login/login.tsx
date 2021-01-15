@@ -43,9 +43,8 @@ const Login: React.FC = (props: any) => {
   const iniciar = async (): Promise<void> => {
     const result = await SigninService({ usuario, clave })
     if (typeof result !== 'string') {
-      storageJobs.setObject('user', result)
-      const prueba = await storageJobs.getObject('user')
-      console.log(prueba)
+      await storageJobs.setObject('user', result.user)
+      await storageJobs.setItem('token', result.token)
       history.push('/page/evaluaciones')
     } else {
       const message = result

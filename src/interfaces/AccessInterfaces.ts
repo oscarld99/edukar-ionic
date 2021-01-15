@@ -9,12 +9,12 @@ export interface User {
   telefono: string
 }
 
-export interface Data {
+export interface Signin {
   user: User
   token: string
 }
 
-export interface Signin {
+export interface Data {
   mensaje: string
   fechaProceso: string
   data: Data
