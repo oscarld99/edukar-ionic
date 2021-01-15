@@ -97,7 +97,7 @@ const Login: React.FC = (props: any) => {
             </div>
           </div>
           <div className="pnl-btn">
-            <button className="btn-ingresar" onClick={() => iniciar()}>
+            <button className="btn-ingresar" onClick={async () => await iniciar()}>
               INGRESAR
             </button>
 
