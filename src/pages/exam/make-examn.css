@@ -183,3 +183,14 @@
   color: gray;
   margin:0;
 }
+
+.descripcion-imagen-pregunta{
+  max-width: 100%;
+  border-radius: 10px;
+  text-align: center;
+ 
+}
+.descripcion-imagen-pregunta img{
+  max-height: 50vh;
+  height: 100%;
+}

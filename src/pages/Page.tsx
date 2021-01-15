@@ -8,7 +8,6 @@ import './Page.css';
 const Page: React.FC = (props) => {
 
   const { name } = useParams<{ name: string; }>();
-  console.log(props)
   return (
     <IonPage>
       <IonContent fullscreen>
@@ -25,7 +24,10 @@ const Page: React.FC = (props) => {
               appPages.map(({ Component, title, index }) => {
                 if (title.toLowerCase().trim() === name.toLowerCase().trim()) {
                   return (<Component key={index} />);
-                }else{
+                } else {
+                  console.log(title.toLowerCase().trim(),
+                    name.toLowerCase().trim()
+                  )
                   return null
                 }
               })

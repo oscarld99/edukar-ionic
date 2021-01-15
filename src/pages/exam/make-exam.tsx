@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { IonContent, IonPage } from '@ionic/react'
 import exam1 from '../../test/task1'
 import './make-examn.css'
+import { imgExamenes, serverMultimedia } from '../../constants/configuration'
 
 const Exam: React.FC = () => {
   const [nose, setNose] = useState({
@@ -110,6 +111,15 @@ const Exam: React.FC = () => {
                   <div className="descripcion-pregunta">
                     <h6>{pregunta.descripcion}</h6>
                   </div>
+                  {
+                    pregunta.imagen
+                      ? <div className="descripcion-imagen-pregunta">
+                        <img src={`${serverMultimedia}${imgExamenes}${quiz.id}/${pregunta.indice}.png`} alt={"imagen-pregunta"} />
+                      </div>
+                      : null
+
+                  }
+
 
                 </div>
                 <div className="opciones">

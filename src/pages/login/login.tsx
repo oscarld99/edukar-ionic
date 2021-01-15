@@ -11,6 +11,7 @@ import { person, lockClosed } from 'ionicons/icons';
 import { useHistory } from 'react-router-dom';
 import './login.css'
 
+
 const Login: React.FC = () => {
 
     const inputRef: any = useRef();
@@ -20,7 +21,7 @@ const Login: React.FC = () => {
     const history = useHistory();
     const iniciar = () => {
         if (usuario === "olora" && clave === "1234") {
-            history.push("/page/examenes");
+            history.push("/page/evaluaciones");
         } else {
             setShowAlert1(true);
         }
@@ -50,7 +51,7 @@ const Login: React.FC = () => {
                             <i><IonIcon slot="start" ios={lockClosed} md={lockClosed} /></i>
                             <input
                                 className="input-loguin"
-                                type="text"
+                                type="password"
                                 placeholder="Contraseña"
                                 ref={inputRef}
                                 value={clave}
@@ -60,7 +61,7 @@ const Login: React.FC = () => {
                         <div className="option-form-loguin">
                             <div className="recordarme">
                                 <input type="checkbox" id="checkbox-recordarme" />
-                                <label htmlFor="checkbox-recordarme">REDORDARME</label>
+                                <label htmlFor="checkbox-recordarme">RECORDARME</label>
                             </div>
                             <div className="olvido-clave">
                                 <h6>Olvidé contraseña</h6>

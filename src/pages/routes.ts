@@ -4,6 +4,7 @@ import { newspaper, checkmarkDone, person, globeOutline, settings, notifications
 import Perfil from './perfil/perfil'
 import Examenes from './examenes/examenes'
 import MakeExam from './exam/make-exam'
+import Notas from './notas/notas'
 
 export const appPages: AppPage[] = [
   {
@@ -14,8 +15,8 @@ export const appPages: AppPage[] = [
     Component: Perfil
   }, {
     index: 2,
-    title: 'Examenes',
-    url: '/page/examenes',
+    title: 'Evaluaciones',
+    url: '/page/evaluaciones',
     mdIcon: newspaper,
     Component: Examenes
   }, {
@@ -23,7 +24,7 @@ export const appPages: AppPage[] = [
     title: 'Resultados',
     url: '/page/resultados',
     mdIcon: checkmarkDone,
-    Component: Examenes
+    Component: Notas
   }, {
     index: 4,
     title: 'Notificaciones',
@@ -33,7 +34,7 @@ export const appPages: AppPage[] = [
   }, {
     index: 5,
     title: 'Configuraciones',
-    url: '/page/consiguraciones',
+    url: '/page/configuraciones',
     mdIcon: settings,
     Component: Examenes
   }, {

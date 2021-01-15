@@ -6,22 +6,29 @@ import {
   IonList,
   IonListHeader,
   IonMenu,
-  IonMenuToggle,
-} from '@ionic/react';
+  IonMenuToggle
+} from '@ionic/react'
 import { lockClosed } from 'ionicons/icons'
-import React from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom'
 import { appPages } from '../pages/routes'
 import Usuario from '../assets/images/usuario.png'
-import './Menu.css';
+import './Menu.css'
 
 
 const Menu: React.FC = () => {
-  const location = useLocation();
-
+  const location = useLocation()
+  const [disabled, setDisabled] = useState(false)
+  useEffect(function () {
+    if (location.pathname === "/login") {
+      setDisabled(true)
+    } else {
+      setDisabled(false)
+    }
+  })
 
   return (
-    <IonMenu contentId="main" type="overlay">
+    <IonMenu contentId="main" type="overlay" disabled={disabled}>
       <IonContent>
         <IonList id="inbox-list">
           <div className="img-user">
@@ -30,7 +37,7 @@ const Menu: React.FC = () => {
           <IonListHeader className="text-user">OSCAR DAVID LORA DE SALES</IonListHeader>
           {appPages.map((appPage, index) => {
             if (appPage.title === "") {
-              return null;
+              return null
             } else {
               return (
                 <IonMenuToggle key={index} autoHide={false}>
@@ -39,7 +46,7 @@ const Menu: React.FC = () => {
                     <IonLabel>{appPage.title}</IonLabel>
                   </IonItem>
                 </IonMenuToggle>
-              );
+              )
             }
 
           })}
@@ -52,7 +59,7 @@ const Menu: React.FC = () => {
         </IonList>
       </IonContent>
     </IonMenu>
-  );
-};
+  )
+}
 
-export default Menu;
+export default Menu

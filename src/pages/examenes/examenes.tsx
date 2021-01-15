@@ -7,7 +7,7 @@ const Examenes: React.FC = () => {
    
     const [buscador, setBuscador] = useState('')
     const info: any = {
-        titulo: 'Quiz de matematicas',
+        titulo: 'EVALUACION de matematicas',
         codigo: 'EDX5480',
         tiempo: '20 Min',
         cierre: '01/01/2020 11:59a.m',

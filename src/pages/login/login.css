@@ -62,7 +62,8 @@
     display: block;
 }
 .option-form-loguin{
-    display: inline-block       ;
+    display: table;
+    width: 100%;
 }
 .recordarme {
     margin: 10px;
@@ -72,6 +73,7 @@
 
 .olvido-clave {
     color: #0984e3;
+    float: right;
 }
 
 .recordarme input {
