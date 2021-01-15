@@ -1,5 +1,5 @@
-import { ErrorResponseHttp, SuccessResponseStatus } from '../helpers/apiResponse'
-import { ResponseWS } from '../interfaces/httpInterfaces'
+import { ErrorResponseHttp, SuccessResponseStatus } from '../../helpers/apiResponse'
+import { ResponseWS } from '../../interfaces/httpInterfaces'
 
 const baseURL = 'https://edukar-api.herokuapp.com/v1.0/edukar'
 
@@ -23,7 +23,7 @@ const get = async <T> (url: string): Promise<ResponseWS<T>> => {
 }
 
 const post = async <T> (url: string, body: any): Promise<ResponseWS<T>> => {
-  const response = await fetch(`${baseURL}/${url}`, {
+  const response = await fetch([baseURL, url].join('/'), {
     method: 'POST',
     headers,
     body: JSON.stringify(body)
