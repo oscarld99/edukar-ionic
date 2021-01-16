@@ -1,10 +1,11 @@
 import { AppPage } from '../interfaces/settings'
-import { newspaper, checkmarkDone, person, globeOutline, settings, notifications } from 'ionicons/icons'
+import { newspaper, checkmarkDone, person, globeOutline, settings, notifications, home } from 'ionicons/icons'
 // VISTAS
 import Perfil from './perfil/perfil'
 import Examenes from './examenes/examenes'
 import MakeExam from './exam/make-exam'
 import Notas from './notas/notas'
+import Home from './home/home'
 
 export const appPages: AppPage[] = [
   {
@@ -15,30 +16,36 @@ export const appPages: AppPage[] = [
     Component: Perfil
   }, {
     index: 2,
+    title: 'Inicio',
+    url: '/page/inicio',
+    mdIcon: home,
+    Component: Home
+  }, {
+    index: 3,
     title: 'Evaluaciones',
     url: '/page/evaluaciones',
     mdIcon: newspaper,
     Component: Examenes
   }, {
-    index: 3,
+    index: 4,
     title: 'Resultados',
     url: '/page/resultados',
     mdIcon: checkmarkDone,
     Component: Notas
   }, {
-    index: 4,
+    index: 5,
     title: 'Notificaciones',
     url: '/page/notificaciones',
     mdIcon: notifications,
     Component: Examenes
   }, {
-    index: 5,
+    index: 6,
     title: 'Configuraciones',
     url: '/page/configuraciones',
     mdIcon: settings,
     Component: Examenes
   }, {
-    index: 6,
+    index: 7,
     title: 'Sitio Oficial',
     url: '/page/sitio-oficial',
     mdIcon: globeOutline,

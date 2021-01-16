@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 import {
   IonIcon,
   IonContent,
@@ -14,6 +14,7 @@ import Usuario from '../../assets/images/usuario.png'
 import './login.css'
 import SigninService from '../../services/access/SigninService'
 import StorageJobs from '../../jobs/Storage'
+import { LOCAL_STORAGE_STATES } from '../../constants/costants'
 const { App } = Plugins
 
 const Login: React.FC = (props: any) => {
@@ -32,7 +33,6 @@ const Login: React.FC = (props: any) => {
       }
     }
   })
-  const inputRef: any = useRef()
   const [usuario, setUsuario] = useState('')
   const [clave, setClave] = useState('')
   const [showToast, setShowToast] = useState(false)
@@ -43,9 +43,9 @@ const Login: React.FC = (props: any) => {
   const iniciar = async (): Promise<void> => {
     const result = await SigninService({ usuario, clave })
     if (typeof result !== 'string') {
-      await storageJobs.setObject('user', result.user)
-      await storageJobs.setItem('token', result.token)
-      history.push('/page/evaluaciones')
+      await storageJobs.setObject(LOCAL_STORAGE_STATES.usuario, result.user)
+      await storageJobs.setItem(LOCAL_STORAGE_STATES.token, result.token)
+      history.push('/page/inicio')
     } else {
       const message = result
       setMessageToast(message)
@@ -80,7 +80,6 @@ const Login: React.FC = (props: any) => {
                 className="input-loguin"
                 type="password"
                 placeholder="Contraseña"
-                ref={inputRef}
                 value={clave}
                 onChange={(e) => setClave(e.target.value)}
               />

@@ -1,21 +1,28 @@
-import { IonIcon } from '@ionic/react'
+import { IonIcon, IonToast } from '@ionic/react'
 import { search } from 'ionicons/icons'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Card from '../../components/card/Card'
+import { Examen } from '../../interfaces/examenes'
+import examenesServices from '../../services/examenes/examenesServices'
 import './examenes.css'
 const Examenes: React.FC = () => {
   const [buscador, setBuscador] = useState('')
-  const info: any = {
-    titulo: 'EVALUACION de matematicas',
-    codigo: 'EDX5480',
-    tiempo: '20 Min',
-    cierre: '01/01/2020 11:59a.m',
-    numeroPreguntas: 25,
-    estado: 'PENDIENTE'
+  const [examenes, setExamenes] = useState<Examen[]>([])
+
+  useEffect(() => {
+    buscarDatos()
+  }, [])
+  const buscarDatos = async (): Promise<void> => {
+    const result = await examenesServices()
+    if (typeof result !== 'string') {
+      setExamenes(result)
+    } else {
+      // TODO: ERRORES
+    }
   }
+
   return (
     <div>
-
       <div className="buscador">
         <div className="input-group">
           <i><IonIcon slot="start" md={search} /></i>
@@ -30,12 +37,19 @@ const Examenes: React.FC = () => {
         </div>
       </div>
       <div className="contenedor-examenes">
-        <Card {...info} ></Card>
-        <Card {...info}></Card>
-        <Card {...info}></Card>
-        <Card {...info}></Card>
+        {
+          examenes.map((examen) => (
+            <Card {...examen} key={examen.id}></Card>
+          ))
+        }
+        <IonToast
+          isOpen={examenes.length === 0}
+          message={'No tiene evaluaciones asignados.'}
+          duration={10000}
+        />
       </div>
     </div>
+
   )
 }
 

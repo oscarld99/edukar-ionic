@@ -5,3 +5,9 @@ export interface AppPage {
   index: number
   Component: React.FC
 }
+
+export interface ComponentsProps {
+  classStyle?: string
+  children?: React.ReactNode
+  [x: string]: any
+}

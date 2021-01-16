@@ -2,7 +2,8 @@ import { IonIcon } from '@ionic/react'
 import { person, mail, call, card } from 'ionicons/icons'
 import React, { useEffect, useState } from 'react'
 import Usuario from '../../assets/images/usuario.png'
-import { Signin, User } from '../../interfaces/AccessInterfaces'
+import { LOCAL_STORAGE_STATES } from '../../constants/costants'
+import { User } from '../../interfaces/AccessInterfaces'
 import StorageJobs from '../../jobs/Storage'
 import './perfil.css'
 
@@ -19,7 +20,7 @@ const Perfil: React.FC = () => {
   })
 
   const obtenerData = async (): Promise<void> => {
-    const dataUsuario = await storageJobs.getObject<User>('user')
+    const dataUsuario = await storageJobs.getObject<User>(LOCAL_STORAGE_STATES.usuario)
     if (dataUsuario !== null) {
       setNombre(dataUsuario.nombres)
       setApellidos(dataUsuario.apellidos)
@@ -27,7 +28,6 @@ const Perfil: React.FC = () => {
       setCorreo(dataUsuario.correo)
       setTelefono(dataUsuario.telefono)
     }
-
   }
 
   return (
