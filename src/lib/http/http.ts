@@ -1,4 +1,4 @@
-import { ErrorResponseHttp, SuccessResponseStatus } from '../../helpers/apiResponse'
+import { ErrorResponseHttp, SuccessResponseStatus, ErrorResponseStatus } from '../../helpers/apiResponse'
 import { MESSAGES_HTTP, ResponseWS } from '../../interfaces/httpInterfaces'
 
 const baseURL = 'https://edukar-api.herokuapp.com/v1.0/edukar'
@@ -7,7 +7,7 @@ const headers = {
   'Content-Type': 'application/json'
 }
 
-const get = async <T> (url: string): Promise<ResponseWS<T>> => {
+const get = async <T>(url: string): Promise<ResponseWS<T>> => {
   try {
     const response = await fetch([baseURL, url].join('/'), {
       method: 'GET',
@@ -34,7 +34,7 @@ const get = async <T> (url: string): Promise<ResponseWS<T>> => {
   }
 }
 
-const post = async <T> (url: string, body: any): Promise<ResponseWS<T>> => {
+const post = async <T>(url: string, body: any): Promise<ResponseWS<T>> => {
   try {
     const response = await fetch([baseURL, url].join('/'), {
       method: 'POST',
@@ -58,11 +58,14 @@ const post = async <T> (url: string, body: any): Promise<ResponseWS<T>> => {
       data.data.mensajeError = MESSAGES_HTTP.NETWORK_ERROR
       throw new ErrorResponseHttp('POST', data)
     }
+    if (ErrorResponseStatus.includes(error.error.status)) {
+      throw new ErrorResponseHttp('POST', error.error)
+    }
     throw new ErrorResponseHttp('POST', data)
   }
 }
 
-const put = async <T> (url: string, body: any): Promise<ResponseWS<T>> => {
+const put = async <T>(url: string, body: any): Promise<ResponseWS<T>> => {
   try {
     const response = await fetch(`${baseURL}/${url}`, {
       method: 'PUT',
@@ -90,7 +93,7 @@ const put = async <T> (url: string, body: any): Promise<ResponseWS<T>> => {
   }
 }
 
-const _delete = async <T> (url: string): Promise<ResponseWS<T>> => {
+const _delete = async <T>(url: string): Promise<ResponseWS<T>> => {
   try {
     const response = await fetch(`${baseURL}/${url}`, {
       method: 'DELETE',

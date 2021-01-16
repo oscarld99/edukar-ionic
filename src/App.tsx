@@ -57,8 +57,7 @@ const App: React.FC = () => {
             <Route path="/exam" component={token ? Exam : Login} exact />
             <Route path="/page/:name" component={token ? Page : Login} exact />
             <Route component={token ? Page : Login} />
-            <Redirect from="/" to={token ? '/page/inicio' : '/login'} exact />
-
+            <Redirect from="/" to='/page/inicio' exact />
           </IonRouterOutlet>
         </IonSplitPane>
       </IonReactRouter>

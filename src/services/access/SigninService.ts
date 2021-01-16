@@ -7,7 +7,6 @@ export default async (user: { usuario: string, clave: string }): Promise<Signin 
     const result = await http.post<ResponseWS<Signin>>('signin', user)
     return result.data.data
   } catch (error) {
-    console.log(error)
     return error.error.data.mensajeError
   }
 }
