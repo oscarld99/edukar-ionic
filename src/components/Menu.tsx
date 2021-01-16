@@ -11,16 +11,17 @@ import {
 } from '@ionic/react'
 import { lockClosed } from 'ionicons/icons'
 import React, { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom'
-import { Plugins } from '@capacitor/core'
-
+import { useHistory, useLocation } from 'react-router-dom'
 import { appPages } from '../pages/routes'
 import Usuario from '../assets/images/usuario.png'
 import './Menu.css'
+import StorageJobs from '../jobs/Storage'
 
 const { Network } = Plugins
 
 const Menu: React.FC = () => {
+  const history = useHistory()
+  const storageJobs = StorageJobs.getInstance()
   const location = useLocation()
   const [disabled, setDisabled] = useState(false)
 
@@ -36,11 +37,12 @@ const Menu: React.FC = () => {
     } else {
       setDisabled(false)
     }
-    Network.getStatus().then((status) => {
-      const { connected } = status
-      if (!connected) setShowAlertNetwork(true)
-    }).catch((error) => console.log(error))
   }/* TODO: quitar cometario para produccion , [location.pathname] */)
+
+  const cerrarSession = async (): Promise<void> => {
+    await storageJobs.clear()
+    history.go(0)
+  }
 
   return (
     <IonMenu contentId="main" type="overlay" disabled={disabled}>
@@ -74,8 +76,8 @@ const Menu: React.FC = () => {
               )
             }
           })}
-          <IonMenuToggle key={7} autoHide={false}>
-            <IonItem routerLink={'/login'} routerDirection="none" lines="none" detail={false}>
+          <IonMenuToggle key={7} autoHide={false} onClick={async () => await cerrarSession()}>
+            <IonItem routerDirection="none" lines="none" detail={false}>
               <IonIcon slot="start" md={lockClosed} />
               <IonLabel>Cerrar Sesion</IonLabel>
             </IonItem>

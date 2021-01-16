@@ -15,11 +15,11 @@ const Card: React.FC<Examen> = (examen: Examen) => {
   const optionExamns = async (): Promise<void> => {
     if (estado === ESTADO_EXAMENES.activo) {
       history.push('/exam')
+      await storageJobs.setObject(LOCAL_STORAGE_STATES.examen_activo, examen)
     } else if (estado === ESTADO_EXAMENES.pendiente) {
       setTextToast('LA EVALUACION ESTA PENDIENTE DE ACTIVACION')
       setShowToast(true)
       // aca deberiamos consultar la info del examen y leugo si cambiar de vista
-      await storageJobs.setObject(LOCAL_STORAGE_STATES.examen_activo, examen)
     } else {
       setTextToast('LA EVALUACION ESTA INACTIVA')
       setShowToast(true)

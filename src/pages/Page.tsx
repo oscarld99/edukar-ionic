@@ -10,27 +10,33 @@ const Page: React.FC = () => {
   return (
     <IonPage>
       <IonContent fullscreen>
-        <main className="main">
-          <div className="menuButton">
-            <IonMenuButton />
-          </div>
-          <div className="headerPage">
-            <img src={LogoHeader} alt="logo-edukar" />
-            <h5 className="page-name">{name}</h5>
-          </div>
-          <div className="contenedor-children">
-            {
-              appPages.map(({ Component, title, index }) => {
-                if (title.toLowerCase().trim() === name.toLowerCase().trim()) {
-                  return (<Component key={index} />)
-                } else {
-                  return null
+        {
+          name
+            ? <main className="main">
+              <div className="menuButton">
+                <IonMenuButton />
+              </div>
+              <div className="headerPage">
+                <img src={LogoHeader} alt="logo-edukar" />
+                <h5 className="page-name">{name}</h5>
+              </div>
+              <div className="contenedor-children">
+                {
+                  appPages.map(({ Component, title, index }) => {
+                    if (title.toLowerCase().trim() === name.toLowerCase().trim()) {
+                      return (<Component key={index} />)
+                    } else {
+                      return null
+                    }
+                  })
                 }
-              })
-            }
-          </div>
+              </div>
 
-        </main>
+            </main>
+
+            : <div>MODULO NO ENCONTRADO</div>
+        }
+
       </IonContent>
     </IonPage>
   )

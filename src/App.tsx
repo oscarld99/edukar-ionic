@@ -2,7 +2,7 @@ import Menu from './components/Menu'
 import Page from './pages/Page'
 import Login from './pages/login/login'
 import Exam from './pages/exam/make-exam'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { IonApp, IonRouterOutlet, IonSplitPane } from '@ionic/react'
 import { IonReactRouter } from '@ionic/react-router'
 import { Redirect, Route } from 'react-router-dom'
@@ -25,18 +25,40 @@ import '@ionic/react/css/display.css'
 
 /* Theme variables */
 import './theme/variables.css'
+import StorageJobs from './jobs/Storage'
+import { LOCAL_STORAGE_STATES } from './constants/costants'
+import Loader from './components/loader/Loader'
 
 const App: React.FC = () => {
+  const storageJobs = StorageJobs.getInstance()
+  const [token, setToken] = useState(false)
+  const [loader, setLoader] = useState(true)
+  // const [loader, setLoader] = useState(true)
+  useEffect(() => {
+    validarSession()
+  }, [])
+  const validarSession = async (): Promise<void> => {
+    const session = await storageJobs.getItem(LOCAL_STORAGE_STATES.token)
+    if (session !== null) {
+      setToken(true)
+      setLoader(false)
+    } else {
+      // setToken(false)
+      setLoader(false)
+    }
+  }
   return (
     <IonApp>
+      <Loader classStyle={loader ? 'loader--show loader--transparent' : ''} />
       <IonReactRouter>
         <IonSplitPane contentId="main">
           <Menu />
           <IonRouterOutlet id="main">
-            <Route path="/exam" component={Exam} exact />
-            <Route path="/login" component={Login} exact />
-            <Route path="/page/:name" component={Page} exact />
-            <Redirect from="/" to="/login" exact />
+            <Route path="/exam" component={token ? Exam : Login} exact />
+            <Route path="/page/:name" component={token ? Page : Login} exact />
+            <Route component={token ? Page : Login} />
+            <Redirect from="/" to={token ? '/page/inicio' : '/login'} exact />
+
           </IonRouterOutlet>
         </IonSplitPane>
       </IonReactRouter>
