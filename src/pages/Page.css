@@ -12,6 +12,7 @@ ion-title {
 
 .menuButton{
   width: 10%;
+  height: 6%;
   top: 5%;
   position: fixed;
   background: linear-gradient(to right,#CFD6E6, #E7EFF9);

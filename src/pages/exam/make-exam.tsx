@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { IonContent, IonPage } from '@ionic/react'
+import { IonContent, IonPage, IonToast } from '@ionic/react'
 import './make-examn.css'
 import { imgExamenes, serverMultimedia } from '../../constants/configuration'
 import StorageJobs from '../../jobs/Storage'
 import { DEFAULT_EXAM, LOCAL_STORAGE_STATES } from '../../constants/costants'
 import { Examen } from '../../interfaces/examenes'
+import { responseValidate } from '../../interfaces/settings'
 import Loader from '../../components/loader/Loader'
 
 const Exam: React.FC = () => {
@@ -15,6 +16,8 @@ const Exam: React.FC = () => {
     respondidas: []
   })
   const [loader, setLoader] = useState(true)
+  const [toast, setToast] = useState(true)
+  const [mensajeToast, setMensajeToast] = useState('')
   useEffect(() => {
     obtenerExamenes()
   }, [])
@@ -63,6 +66,35 @@ const Exam: React.FC = () => {
     const newstate = { ...state }
     newstate.paginadorPreguntas = state.paginadorPreguntas - 1
     setState(newstate)
+  }
+
+  const handleTerminar = (): void => {
+    const res = validarQuiz()
+    console.log(res)
+    if (res.response) {
+      setMensajeToast('EXAMEN COMPLETADO EXITOSAMENTE')
+    } else {
+      setMensajeToast(res.mensaje)
+    }
+    setToast(true)
+  }
+
+  const validarQuiz = (): responseValidate => {
+    const res = {
+      response: true,
+      mensaje: ''
+    }
+    quiz.preguntas.map((pregunta) => {
+      if (pregunta.multiple) {
+
+      } else {
+        if (!respondidas[pregunta.indice]) {
+          res.response = false
+          res.mensaje = `DEBE COMPLETAR LA PREGUNTA ${pregunta.indice + 1}`
+        }
+      }
+    })
+    return res
   }
 
   const handleChange = (opcion: any) => (event: any) => {
@@ -175,13 +207,18 @@ const Exam: React.FC = () => {
                     {
                       paginadorPreguntas === (quiz.preguntas.length - 1)
                         ? <button className="btn-paginador btn-siguiente"
-                          onClick={() => console.log(respondidas)}>
+                          onClick={() => handleTerminar()}>
                           TERMINAR</button>
                         : <button className="btn-paginador btn-siguiente"
                           onClick={() => handleNext()}>
                           SIGUIENTE </button>
                     }
                   </div>
+                  <IonToast
+                    isOpen={toast}
+                    message={mensajeToast}
+                    duration={5000}
+                  />
                 </div>
               </section>
             </div>

@@ -45,12 +45,6 @@ export const appPages: AppPage[] = [
     mdIcon: settings,
     Component: Examenes
   }, {
-    index: 7,
-    title: 'Sitio Oficial',
-    url: '/page/sitio-oficial',
-    mdIcon: globeOutline,
-    Component: Examenes
-  }, {
     index: 8,
     title: '',
     url: '/page/make-exam',

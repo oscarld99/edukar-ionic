@@ -8,7 +8,7 @@ import {
   IonMenu,
   IonMenuToggle
 } from '@ionic/react'
-import { lockClosed } from 'ionicons/icons'
+import { globeOutline, lockClosed } from 'ionicons/icons'
 import React, { useEffect, useState } from 'react'
 import { useHistory, useLocation } from 'react-router-dom'
 import { appPages } from '../pages/routes'
@@ -36,6 +36,10 @@ const Menu: React.FC = () => {
     history.go(0)
   }
 
+  const sitiOficial = (): void => {
+
+  }
+
   return (
     <IonMenu contentId="main" type="overlay" disabled={disabled}>
       <IonContent>
@@ -58,6 +62,12 @@ const Menu: React.FC = () => {
               )
             }
           })}
+          <IonMenuToggle key={7} autoHide={false} onClick={() => sitiOficial()}>
+            <IonItem routerDirection="none" lines="none" detail={false}>
+              <IonIcon slot="start" md={globeOutline} />
+              <IonLabel>Sitio oficial</IonLabel>
+            </IonItem>
+          </IonMenuToggle>
           <IonMenuToggle key={7} autoHide={false} onClick={async () => await cerrarSession()}>
             <IonItem routerDirection="none" lines="none" detail={false}>
               <IonIcon slot="start" md={lockClosed} />

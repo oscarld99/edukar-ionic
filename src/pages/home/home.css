@@ -1,0 +1,9 @@
+.container-image-slide {
+  padding: 15px;
+}
+
+.container-image-slide img {
+  margin: auto;
+  width: 70%;
+  position: relative;
+}

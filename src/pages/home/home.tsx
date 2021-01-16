@@ -1,23 +1,32 @@
 import { IonSlide, IonSlides } from '@ionic/react'
-import React, { } from 'react'
+import React from 'react'
+import Paso1 from '../../assets/tutoriales/paso1.png'
+import Paso2 from '../../assets/tutoriales/paso2.png'
+import Paso3 from '../../assets/tutoriales/paso3.png'
 import './home.css'
 const Home: React.FC = () => {
   const slideOpts = {
-    initialSlide: 1,
+    initialSlide: 0,
     speed: 400
   }
 
   return (
     <div className="container-slides">
-      <IonSlides pager={true} options={slideOpts}>
+      <IonSlides options={slideOpts}>
         <IonSlide>
-          <h1>Slide 1</h1>
+          <div className="container-image-slide">
+            <img src={Paso1} />
+          </div>
         </IonSlide>
         <IonSlide>
-          <h1>Slide 2</h1>
+          <div className="container-image-slide">
+            <img src={Paso2} />
+          </div>
         </IonSlide>
         <IonSlide>
-          <h1>Slide 3</h1>
+          <div className="container-image-slide">
+            <img src={Paso3} />
+          </div>
         </IonSlide>
       </IonSlides>
     </div>

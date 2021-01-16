@@ -11,3 +11,8 @@ export interface ComponentsProps {
   children?: React.ReactNode
   [x: string]: any
 }
+
+export interface responseValidate {
+  response: boolean
+  mensaje: string
+}
