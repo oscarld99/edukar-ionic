@@ -51,7 +51,7 @@ const Menu: React.FC = () => {
   }
 
   const sitiOficial = (): void => {
-
+    window.open('https://edukarr.netlify.app/', '_system')
   }
 
   return (

@@ -7,7 +7,7 @@ import './home.css'
 const Home: React.FC = () => {
   const slideOpts = {
     initialSlide: 0,
-    speed: 400
+    speed: 1000
   }
 
   return (
