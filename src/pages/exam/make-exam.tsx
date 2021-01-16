@@ -27,12 +27,13 @@ const Exam: React.FC = () => {
         respondidas: []
       })
       setLoader(false)
+    } else {
+      console.log('se toteo')
     }
   }
 
   const { paginadorPreguntas, respondidas } = state
   const quiz: Examen = state.quiz
-  console.log(quiz.preguntas)
   const pregunta = quiz.preguntas[paginadorPreguntas] || {}
   const validarClases = (opcion: any): string => {
     const { respondidas } = state

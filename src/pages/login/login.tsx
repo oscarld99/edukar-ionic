@@ -15,11 +15,12 @@ import './login.css'
 import SigninService from '../../services/access/SigninService'
 import StorageJobs from '../../jobs/Storage'
 import { LOCAL_STORAGE_STATES } from '../../constants/costants'
+import Loader from '../../components/loader/Loader'
 const { App } = Plugins
 
 const Login: React.FC = (props: any) => {
   const storageJobs = StorageJobs.getInstance()
-
+  const [loader, setLoader] = useState(false)
   const [counter, setCounter] = useState(0)
   document.addEventListener('ionBackButton', () => {
     if (props.location.pathname === '/login') {
@@ -41,21 +42,27 @@ const Login: React.FC = (props: any) => {
   const history = useHistory()
 
   const iniciar = async (): Promise<void> => {
+    setLoader(true)
     const result = await SigninService({ usuario, clave })
     if (typeof result !== 'string') {
       await storageJobs.setObject(LOCAL_STORAGE_STATES.usuario, result.user)
       await storageJobs.setItem(LOCAL_STORAGE_STATES.token, result.token)
-      history.push('/page/inicio')
+      history.go(0)
+      setLoader(false)
     } else {
       const message = result
       setMessageToast(message)
       setShowToast(true)
+      setLoader(false)
     }
   }
 
   return (
     <IonPage>
       <IonContent fullscreen>
+        <Loader classStyle={loader ? 'loader--show loader--transparent' : ''} >
+          INICIANDO SESSION
+        </Loader>
         <div className="root-login">
           <div className="img-logo">
             <img src={Logologin} alt="logo-edukar" />
