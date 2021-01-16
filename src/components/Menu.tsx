@@ -12,14 +12,11 @@ import {
 import { globeOutline, lockClosed } from 'ionicons/icons'
 import React, { useEffect, useState } from 'react'
 import { useHistory, useLocation } from 'react-router-dom'
-import { Plugins } from '@capacitor/core'
 
 import { appPages } from '../pages/routes'
 import Usuario from '../assets/images/usuario.png'
 import './Menu.css'
 import StorageJobs from '../jobs/Storage'
-
-const { Network } = Plugins
 
 const Menu: React.FC = () => {
   const history = useHistory()
@@ -29,20 +26,12 @@ const Menu: React.FC = () => {
 
   const [showAlertNetwork, setShowAlertNetwork] = useState(false)
 
-  Network.addListener('networkStatusChange', (status) => {
-    console.log('Network status changed', status)
-  })
-
   useEffect(() => {
     if (location.pathname === '/login') {
       setDisabled(true)
     } else {
       setDisabled(false)
     }
-    Network.getStatus().then((status) => {
-      const { connected } = status
-      if (!connected) setShowAlertNetwork(true)
-    }).catch((error) => console.log(error))
   }/* TODO: quitar cometario para produccion , [location.pathname] */)
 
   const cerrarSession = async (): Promise<void> => {
