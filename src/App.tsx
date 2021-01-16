@@ -28,8 +28,20 @@ import './theme/variables.css'
 import StorageJobs from './jobs/Storage'
 import { LOCAL_STORAGE_STATES } from './constants/costants'
 import Loader from './components/loader/Loader'
+import Alert from './components/alert/Alert'
+
+import SocketIO from './jobs/socketIO'
 
 const App: React.FC = () => {
+  const socketIO = SocketIO.getInstance()
+  console.log('obtuve la instancia')
+  console.log('estado socket ', socketIO.getCheckStatus())
+
+  socketIO.on('exam/group/1', function (data: any) {
+    console.log(data)
+    console.log('socket.connected', socketIO.getCheckStatus())
+  })
+
   const storageJobs = StorageJobs.getInstance()
   const [token, setToken] = useState(false)
   const [loader, setLoader] = useState(true)
@@ -50,6 +62,7 @@ const App: React.FC = () => {
   return (
     <IonApp>
       <Loader classStyle={loader ? 'loader--show loader--transparent' : ''} />
+      <Alert showAlert={true} />
       <IonReactRouter>
         <IonSplitPane contentId="main">
           <Menu />
@@ -58,11 +71,10 @@ const App: React.FC = () => {
             <Route path="/page/:name" component={token ? Page : Login} exact />
             <Route component={token ? Page : Login} />
             <Redirect from="/" to={token ? '/page/inicio' : '/login'} exact />
-
           </IonRouterOutlet>
         </IonSplitPane>
       </IonReactRouter>
-    </IonApp>
+    </IonApp >
   )
 }
 
