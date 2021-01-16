@@ -12,6 +12,8 @@ import {
 import { lockClosed } from 'ionicons/icons'
 import React, { useEffect, useState } from 'react'
 import { useHistory, useLocation } from 'react-router-dom'
+import { Plugins } from '@capacitor/core'
+
 import { appPages } from '../pages/routes'
 import Usuario from '../assets/images/usuario.png'
 import './Menu.css'
@@ -27,7 +29,7 @@ const Menu: React.FC = () => {
 
   const [showAlertNetwork, setShowAlertNetwork] = useState(false)
 
-  const handler = Network.addListener('networkStatusChange', (status) => {
+  Network.addListener('networkStatusChange', (status) => {
     console.log('Network status changed', status)
   })
 
@@ -37,6 +39,10 @@ const Menu: React.FC = () => {
     } else {
       setDisabled(false)
     }
+    Network.getStatus().then((status) => {
+      const { connected } = status
+      if (!connected) setShowAlertNetwork(true)
+    }).catch((error) => console.log(error))
   }/* TODO: quitar cometario para produccion , [location.pathname] */)
 
   const cerrarSession = async (): Promise<void> => {
