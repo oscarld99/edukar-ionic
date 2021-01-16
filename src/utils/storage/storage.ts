@@ -1,12 +1,13 @@
 import { saveState } from './configStorage'
 import { createStore } from 'redux'
+import { STATE_GLOBAL } from '../../constants/costants'
 
-const reducer = (state: any, action: any) => {
+const reducer = (state: any, action: any): any => {
   switch (action.type) {
-    case 'd':
+    case STATE_GLOBAL.changeNetworkStatus:
       return {
         ...state,
-        evaluationData: action.evaluationData
+        networkStatus: action.networkStatus
       }
 
     default:
@@ -18,13 +19,12 @@ const reducer = (state: any, action: any) => {
 const store = createStore(
   reducer,
   {
-
+    networkStatus: true
   }
 )
 
 store.subscribe(function () {
   saveState(store.getState())
 })
-
 
 export default store 

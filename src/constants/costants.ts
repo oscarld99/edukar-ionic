@@ -21,6 +21,11 @@ export const LOCAL_STORAGE_STATES = {
   examen_activo: 'active-exam'
 }
 
+export const STATE_GLOBAL = {
+  changeNetworkStatus: 'changeNetworkStatus'
+}
+
+
 export const DEFAULT_EXAM: Examen = {
   nombre: 'Examen de biologia',
   tiempo: 15,

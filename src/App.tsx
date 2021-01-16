@@ -29,18 +29,11 @@ import StorageJobs from './jobs/Storage'
 import { LOCAL_STORAGE_STATES } from './constants/costants'
 import Loader from './components/loader/Loader'
 import Alert from './components/alert/Alert'
-
-import SocketIO from './jobs/socketIO'
+import state from './utils/storage/storage'
+import { useSelector } from 'react-redux'
 
 const App: React.FC = () => {
-  const socketIO = SocketIO.getInstance()
-  console.log('obtuve la instancia')
-  console.log('estado socket ', socketIO.getCheckStatus())
-
-  socketIO.on('exam/group/1', function (data: any) {
-    console.log(data)
-    console.log('socket.connected', socketIO.getCheckStatus())
-  })
+  const statusNetwork = useSelector(store => state.getState().networkStatus)
 
   const storageJobs = StorageJobs.getInstance()
   const [token, setToken] = useState(false)
@@ -62,7 +55,7 @@ const App: React.FC = () => {
   return (
     <IonApp>
       <Loader classStyle={loader ? 'loader--show loader--transparent' : ''} />
-      <Alert showAlert={true} />
+      <Alert showAlert={!statusNetwork} />
       <IonReactRouter>
         <IonSplitPane contentId="main">
           <Menu />
@@ -75,6 +68,7 @@ const App: React.FC = () => {
         </IonSplitPane>
       </IonReactRouter>
     </IonApp >
+
   )
 }
 
