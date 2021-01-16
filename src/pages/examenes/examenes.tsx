@@ -1,4 +1,4 @@
-import { IonIcon, IonToast } from '@ionic/react'
+import { IonIcon } from '@ionic/react'
 import { search } from 'ionicons/icons'
 import React, { useEffect, useState } from 'react'
 import Card from '../../components/card/Card'
@@ -42,11 +42,13 @@ const Examenes: React.FC = () => {
             <Card {...examen} key={examen.id}></Card>
           ))
         }
+        {/*
         <IonToast
           isOpen={examenes.length === 0}
           message={'No tiene evaluaciones asignados.'}
           duration={10000}
         />
+        */}
       </div>
     </div>
 

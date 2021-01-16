@@ -34,8 +34,8 @@ const Login: React.FC = (props: any) => {
       }
     }
   })
-  const [usuario, setUsuario] = useState('')
-  const [clave, setClave] = useState('')
+  const [usuario, setUsuario] = useState('ncortina')
+  const [clave, setClave] = useState('110120')
   const [showToast, setShowToast] = useState(false)
   const [messageToast, setMessageToast] = useState('')
 
@@ -78,7 +78,7 @@ const Login: React.FC = (props: any) => {
                 type="text"
                 placeholder="Usuario"
                 value={usuario}
-                onChange={(e) => setUsuario(e.target.value)}
+                onChange={(e) => setUsuario(e.target.value.toLowerCase())}
               />
             </div>
             <div className="input-group">

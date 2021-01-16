@@ -7,16 +7,18 @@ import { DEFAULT_EXAM, LOCAL_STORAGE_STATES } from '../../constants/costants'
 import { Examen } from '../../interfaces/examenes'
 import { responseValidate } from '../../interfaces/settings'
 import Loader from '../../components/loader/Loader'
+import { useHistory } from 'react-router'
 
 const Exam: React.FC = () => {
   const storageJobs = StorageJobs.getInstance()
+  const history = useHistory()
   const [state, setState] = useState({
     quiz: DEFAULT_EXAM,
     paginadorPreguntas: 0,
     respondidas: []
   })
   const [loader, setLoader] = useState(true)
-  const [toast, setToast] = useState(true)
+  const [toast, setToast] = useState(false)
   const [mensajeToast, setMensajeToast] = useState('')
   useEffect(() => {
     obtenerExamenes()
@@ -31,6 +33,7 @@ const Exam: React.FC = () => {
       })
       setLoader(false)
     } else {
+      history.push('/page/evaluaciones')
       console.log('se toteo')
     }
   }
@@ -73,6 +76,7 @@ const Exam: React.FC = () => {
     console.log(res)
     if (res.response) {
       setMensajeToast('EXAMEN COMPLETADO EXITOSAMENTE')
+      history.push('/page/evaluaciones')
     } else {
       setMensajeToast(res.mensaje)
     }
@@ -216,8 +220,10 @@ const Exam: React.FC = () => {
                   </div>
                   <IonToast
                     isOpen={toast}
+                    onDidDismiss={() => setToast(false)}
                     message={mensajeToast}
-                    duration={5000}
+                    duration={3000}
+                    color={'dark'}
                   />
                 </div>
               </section>

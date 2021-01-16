@@ -6,6 +6,7 @@ import Examenes from './examenes/examenes'
 import MakeExam from './exam/make-exam'
 import Notas from './notas/notas'
 import Home from './home/home'
+import Notificaciones from './notificaciones/notificaciones'
 
 export const appPages: AppPage[] = [
   {
@@ -37,7 +38,7 @@ export const appPages: AppPage[] = [
     title: 'Notificaciones',
     url: '/page/notificaciones',
     mdIcon: notifications,
-    Component: Examenes
+    Component: Notificaciones
   }, {
     index: 6,
     title: 'Configuraciones',
