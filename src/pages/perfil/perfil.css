@@ -1,36 +1,44 @@
-.info-user{
-    border: 1px solid #0984e3;
-    background-color: #00A9DD20;
-    border-radius: 7px;
-    padding: 10px;
+.info-user {
+  border: 1px solid #0984e3;
+  background-color: #00A9DD20;
+  border-radius: 7px;
+  padding: 10px;
 }
 
-.main-perfil{
-    padding: 10px;
+.info-user .input-loguin {
+  padding-left: 20px;
+  font-weight: bold;
 }
 
-.actualizar-user{
-    margin-top: 10px;
-}
-.btn-perfil{
-    padding: 10px 20px;
-    color: #fff;
-    background-color: #0984e3;
-    border-radius: 20px;
-    margin:auto;
-    position: relative;
-    font-size: 1.2em;
-    font-weight: bold;
+.main-perfil {
+  padding: 10px;
 }
 
-.btn-guardar{
-   width: 40%;
+.actualizar-user {
+  margin-top: 10px;
 }
 
-.btn-cancelar{
-   width: 40%;
+.btn-perfil {
+  padding: 10px 20px;
+  color: #fff;
+  background-color: #0984e3;
+  border-radius: 20px;
+  margin: auto;
+  position: relative;
+  font-size: 1.2em;
+  font-weight: bold;
 }
 
-.btn-actualizar{
-   width: 80%;
+.btn-guardar {
+  width: 46%;
+  margin: 2%;
+}
+
+.btn-cancelar {
+  width: 46%;
+  margin: 2%;
+}
+
+.btn-actualizar {
+  width: 100%;
 }

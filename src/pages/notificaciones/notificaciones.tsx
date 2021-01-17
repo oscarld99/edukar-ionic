@@ -1,24 +1,35 @@
-import { IonAvatar, IonItem, IonLabel } from '@ionic/react'
 import React from 'react'
+import NotificacionComponent from '../../components/notificacion/notificacion'
+import { Notificacion } from '../../interfaces/examenes'
 import './notificacion.css'
 const Notificaciones: React.FC = () => {
+  const notifiaciones: Notificacion[] = [{
+    tipo: 0,
+    title: 'PEDRO FRANCISCO',
+    mensaje: 'No se les olvide que mañana a las 6:00 pm estara disponible la evaluaicon de ingles.'
+  }, {
+    tipo: 1,
+    title: 'Nueva evaluacion!',
+    mensaje: 'La evaluacion de matematicas, ya esta disponible'
+  }, {
+    tipo: 2,
+    title: 'Examen calificado',
+    mensaje: 'La evaluacion de lectura critica ya fue calificada.'
+  }, {
+    tipo: 3,
+    title: 'Apresurate!',
+    mensaje: 'Faltan 15 minutos, apra que avabe el plazo de realizar la evaluacion de frances.'
+  }]
 
   return (
     <div className="container-notificaciones">
-      <IonItem button className="item-notificacion" >
-        <IonAvatar slot="start">
-          <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y" />
-        </IonAvatar>
-        <IonLabel className="ion-text-wrap">Item Avatar</IonLabel>
-      </IonItem>
-      <IonItem button className="item-notificacion" >
-        <IonAvatar slot="start">
-          <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y" />
-        </IonAvatar>
-        <IonLabel className="ion-text-wrap">
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-        </IonLabel>
-      </IonItem>
+      {
+        notifiaciones.map((notificacion) => {
+          return (
+            <NotificacionComponent {...notificacion} />
+          )
+        })
+      }
     </div>
   )
 }

@@ -25,8 +25,15 @@ export const STATE_GLOBAL = {
   changeNetworkStatus: 'changeNetworkStatus'
 }
 
+export const NOTIFICACIONES_TIPOS = {
+  mensaje_profesor: 0,
+  examen_recibido: 1,
+  calificacion_examen: 2,
+  alerta_examen: 3
+}
 
 export const DEFAULT_EXAM: Examen = {
+  id: 0,
   nombre: 'Examen de biologia',
   tiempo: 15,
   tipo: 'EXAMEN',

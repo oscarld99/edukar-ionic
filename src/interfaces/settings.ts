@@ -15,4 +15,11 @@ export interface ComponentsProps {
 export interface responseValidate {
   response: boolean
   mensaje: string
+  respuestas?: responsePregunta[]
+}
+
+export interface responsePregunta {
+  indice: number
+  pregunta: string
+  respuestas: number | number[]
 }

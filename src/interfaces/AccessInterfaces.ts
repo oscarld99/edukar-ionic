@@ -4,8 +4,8 @@ export interface User {
   apellidos: string
   identificacion: string
   correo: string
-  entidad_id: number
-  grupos_id: string
+  entidad_id?: number
+  grupos_id?: string
   telefono: string
 }
 

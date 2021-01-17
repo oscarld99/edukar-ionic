@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom'
 import { ESTADO_EXAMENES, LOCAL_STORAGE_STATES } from '../../constants/costants'
 import { Examen } from '../../interfaces/examenes'
 import StorageJobs from '../../jobs/Storage'
+import { formatDuration } from '../../utils/funciuones/funciones'
 import './Card.css'
 
 const Card: React.FC<Examen> = (examen: Examen) => {
@@ -36,11 +37,11 @@ const Card: React.FC<Examen> = (examen: Examen) => {
         </div>
         <div className="card__item">
           <span className="card__label">tiempo:</span>
-          <span className="card__info">{tiempo}</span>
+          <span className="card__info">{formatDuration(tiempo)}</span>
         </div>
         <div className="card__item">
           <span className="card__label">fecha cierre:</span>
-          <span className="card__info">{fechaCierre}</span>
+          <span className="card__info">{new Date(fechaCierre).toLocaleString()}</span>
         </div>
         <div className="card__item">
           <span className="card__label">preguntas:</span>
@@ -48,7 +49,7 @@ const Card: React.FC<Examen> = (examen: Examen) => {
         </div>
         <div className="card__item">
           <span className="card__label">estado:</span>
-          <span className="card__info">{'ABIERTO'}</span>
+          <span className="card__info">{estado}</span>
         </div>
       </div>
       <IonToast

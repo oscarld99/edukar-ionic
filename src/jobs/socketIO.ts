@@ -8,14 +8,14 @@ export default class SocketIO {
   socket!: Socket
   socketStatus!: boolean
 
-  public static getInstance(): SocketIO {
+  public static getInstance (): SocketIO {
     if (!SocketIO.instance) {
       SocketIO.instance = new SocketIO()
     }
     return SocketIO.instance
   }
 
-  private constructor() {
+  private constructor () {
     this.socket = io('https://edukar-api.herokuapp.com/')
     this.setCheckStatus()
   }

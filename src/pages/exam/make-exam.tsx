@@ -5,13 +5,17 @@ import { imgExamenes, serverMultimedia } from '../../constants/configuration'
 import StorageJobs from '../../jobs/Storage'
 import { DEFAULT_EXAM, LOCAL_STORAGE_STATES } from '../../constants/costants'
 import { Examen } from '../../interfaces/examenes'
-import { responseValidate } from '../../interfaces/settings'
+import { segundosAHora } from '../../utils/funciuones/funciones'
 import Loader from '../../components/loader/Loader'
 import { useHistory } from 'react-router'
+import resolverExamen from '../../services/examenes/resolverExamen'
+import { validarClases, validarQuiz } from './make-exam.validate'
 
+let time = 60
 const Exam: React.FC = () => {
   const storageJobs = StorageJobs.getInstance()
   const history = useHistory()
+
   const [state, setState] = useState({
     quiz: DEFAULT_EXAM,
     paginadorPreguntas: 0,
@@ -22,6 +26,8 @@ const Exam: React.FC = () => {
   const [mensajeToast, setMensajeToast] = useState('')
   useEffect(() => {
     obtenerExamenes()
+    decrementarTime()
+    time = time * quiz.tiempo
   }, [])
   const obtenerExamenes = async (): Promise<void> => {
     const dataExamenes = await storageJobs.getObject<Examen>(LOCAL_STORAGE_STATES.examen_activo)
@@ -41,22 +47,13 @@ const Exam: React.FC = () => {
   const { paginadorPreguntas, respondidas } = state
   const quiz: Examen = state.quiz
   const pregunta = quiz.preguntas[paginadorPreguntas] || {}
-  const validarClases = (opcion: any): string => {
-    const { respondidas } = state
-    let clases = 'opcion'
-    try {
-      if (opcion.multiple) {
-        const respondidass: any = respondidas
-        if (respondidass[opcion.indice].includes(opcion.valor)) {
-          clases += ' opcion_selected'
-        }
-      } else {
-        if (respondidas[opcion.indice] === opcion.valor) {
-          clases += ' opcion_selected'
-        }
-      }
-    } catch (error) { }
-    return clases
+  // pruebas time
+
+  const decrementarTime = (): void => {
+    setInterval(() => {
+      console.log(time)
+      time = time - 1
+    }, 1000)
   }
 
   const handleNext = (): void => {
@@ -71,34 +68,23 @@ const Exam: React.FC = () => {
     setState(newstate)
   }
 
-  const handleTerminar = (): void => {
-    const res = validarQuiz()
-    console.log(res)
+  const handleTerminar = async (): Promise<void> => {
+    const res = validarQuiz(quiz, respondidas)
     if (res.response) {
-      setMensajeToast('EXAMEN COMPLETADO EXITOSAMENTE')
-      history.push('/page/evaluaciones')
+      const result = await resolverExamen(1, quiz.id, { respuestas: res.respuestas }, {})
+      if (typeof result !== 'string') {
+        setMensajeToast('EXAMEN COMPLETADO EXITOSAMENTE')
+        await storageJobs.removeItem(LOCAL_STORAGE_STATES.examen_activo)
+        history.push('/page/evaluaciones')
+      } else {
+        const message = result
+        setMensajeToast(message)
+      }
     } else {
       setMensajeToast(res.mensaje)
     }
+    setLoader(false)
     setToast(true)
-  }
-
-  const validarQuiz = (): responseValidate => {
-    const res = {
-      response: true,
-      mensaje: ''
-    }
-    quiz.preguntas.map((pregunta) => {
-      if (pregunta.multiple) {
-
-      } else {
-        if (!respondidas[pregunta.indice]) {
-          res.response = false
-          res.mensaje = `DEBE COMPLETAR LA PREGUNTA ${pregunta.indice + 1}`
-        }
-      }
-    })
-    return res
   }
 
   const handleChange = (opcion: any) => (event: any) => {
@@ -134,7 +120,6 @@ const Exam: React.FC = () => {
         auxiliar[opcion.indice] = opcion.valor
       }
     }
-
     const newstate = { ...state }
     newstate.respondidas = auxiliar
     setState(newstate)
@@ -152,10 +137,10 @@ const Exam: React.FC = () => {
                   <h3 >{quiz.nombre}</h3>
                 </div>
                 <div className="title-exam-preguntas">
-                  <h3 >{`${quiz.preguntas.length} preguntas ${quiz.tiempo}`}</h3>
+                  <h3 >{`${paginadorPreguntas + 1} de ${quiz.preguntas.length} preguntas`}</h3>
                 </div>
                 <div className="title-exam-tiempo">
-                  <h3 >{'Tiempo transcurrido: 00:18:58'}</h3>
+                  <h3 >{`Tiempo restante: ${segundosAHora(time)}`}</h3>
                 </div>
               </section>
               <hr className="separador" />
@@ -194,7 +179,7 @@ const Exam: React.FC = () => {
                             opcion.indice = pregunta.indice
                             opcion.numero_respuestas = pregunta.numero_respuestas
                             return (
-                              <div className={validarClases(opcion)} onClick={() => handleSeleccionar(opcion)}>
+                              <div className={validarClases(opcion, respondidas)} onClick={() => handleSeleccionar(opcion)}>
                                 <h6>{opcion.descripcion}</h6>
                               </div>
                             )
@@ -211,7 +196,7 @@ const Exam: React.FC = () => {
                     {
                       paginadorPreguntas === (quiz.preguntas.length - 1)
                         ? <button className="btn-paginador btn-siguiente"
-                          onClick={() => handleTerminar()}>
+                          onClick={async () => await handleTerminar()}>
                           TERMINAR</button>
                         : <button className="btn-paginador btn-siguiente"
                           onClick={() => handleNext()}>
