@@ -26,7 +26,9 @@ const Exam: React.FC = () => {
   const [mensajeToast, setMensajeToast] = useState('')
   useEffect(() => {
     obtenerExamenes()
+    /*
     decrementarTime()
+    */
     time = time * quiz.tiempo
   }, [])
   const obtenerExamenes = async (): Promise<void> => {
@@ -40,7 +42,6 @@ const Exam: React.FC = () => {
       setLoader(false)
     } else {
       history.push('/page/evaluaciones')
-      console.log('se toteo')
     }
   }
 
