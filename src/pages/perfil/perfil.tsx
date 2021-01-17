@@ -40,6 +40,10 @@ const Perfil: React.FC = () => {
   }
 
   const actualizarDatos = async (): Promise<void> => {
+    setModeUpdate(true)
+  }
+
+  const guardarExamen = async (): Promise<void> => {
     setLoader(true)
     const result = await PerfilService({
       id,
@@ -56,7 +60,6 @@ const Perfil: React.FC = () => {
       setMessageToast(message)
       setShowToast(true)
     }
-    setModeUpdate(false)
     setLoader(false)
   }
 
@@ -128,7 +131,7 @@ const Perfil: React.FC = () => {
           modeUpdate
             ? [
               <button className="btn-perfil btn-cancelar" onClick={() => setModeUpdate(false)}>CANCELAR</button>,
-              <button className="btn-perfil btn-guardar" onClick={() => setModeUpdate(false)}>GUARDAR</button>
+              <button className="btn-perfil btn-guardar" onClick={async () => await guardarExamen()}>GUARDAR</button>
             ]
             : <button className="btn-perfil btn-actualizar" onClick={async () => await actualizarDatos()}>ACTUALIZAR</button>
         }
