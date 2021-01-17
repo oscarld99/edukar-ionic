@@ -38,6 +38,7 @@ const Login: React.FC = (props: any) => {
   const [clave, setClave] = useState('110120')
   const [showToast, setShowToast] = useState(false)
   const [messageToast, setMessageToast] = useState('')
+  const [btnSignin, setBtnSignin] = useState(false)
 
   const history = useHistory()
 
@@ -102,7 +103,7 @@ const Login: React.FC = (props: any) => {
             </div>
           </div>
           <div className="pnl-btn">
-            <button className="btn-ingresar" onClick={async () => await iniciar()}>
+            <button className="btn-ingresar" disabled={btnSignin} onClick={async () => await iniciar()}>
               INGRESAR
             </button>
 

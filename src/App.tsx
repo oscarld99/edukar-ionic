@@ -31,9 +31,15 @@ import Loader from './components/loader/Loader'
 import Alert from './components/alert/Alert'
 import state from './utils/storage/storage'
 import { useSelector } from 'react-redux'
+import SocketIO from './jobs/socketIO'
 
 const App: React.FC = () => {
+  const socketIO = SocketIO.getInstance()
   const statusNetwork = useSelector(store => state.getState().networkStatus)
+
+  socketIO.on('group/1', (data: any) => {
+    console.log(data) // data es el objeto de notificacion
+  })
 
   const storageJobs = StorageJobs.getInstance()
   const [token, setToken] = useState(false)
@@ -68,7 +74,6 @@ const App: React.FC = () => {
         </IonSplitPane>
       </IonReactRouter>
     </IonApp >
-
   )
 }
 
