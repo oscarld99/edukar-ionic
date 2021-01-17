@@ -34,7 +34,7 @@ const Login: React.FC = (props: any) => {
       }
     }
   })
-  const [usuario, setUsuario] = useState('ncortina')
+  const [usuario, setUsuario] = useState('oscarito')
   const [clave, setClave] = useState('110120')
   const [showToast, setShowToast] = useState(false)
   const [messageToast, setMessageToast] = useState('')
