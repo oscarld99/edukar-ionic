@@ -30,6 +30,14 @@ const Exam: React.FC = () => {
     decrementarTime()
     */
     time = time * quiz.tiempo
+    return () => {
+      time = 60
+      setState({
+        quiz: DEFAULT_EXAM,
+        paginadorPreguntas: 0,
+        respondidas: []
+      })
+    }
   }, [])
   const obtenerExamenes = async (): Promise<void> => {
     const dataExamenes = await storageJobs.getObject<Examen>(LOCAL_STORAGE_STATES.examen_activo)
@@ -50,12 +58,6 @@ const Exam: React.FC = () => {
   const pregunta = quiz.preguntas[paginadorPreguntas] || {}
   // pruebas time
 
-  const decrementarTime = (): void => {
-    setInterval(() => {
-      console.log(time)
-      time = time - 1
-    }, 1000)
-  }
 
   const handleNext = (): void => {
     const newstate = { ...state }
@@ -166,7 +168,9 @@ const Exam: React.FC = () => {
                           : null
 
                       }
-
+                      <div className="descripcion-pregunta">
+                        <h6>{pregunta.ayuda}</h6>
+                      </div>
                     </div>
                     <div className="opciones">
                       {

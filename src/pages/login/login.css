@@ -74,10 +74,6 @@
 .olvido-clave {
     color: #0984e3;
     float: right;
+    text-decoration: underline;
 }
 
-.recordarme input {
-    padding: 10px;
-    margin:5px;
-    
-}

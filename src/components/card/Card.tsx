@@ -1,4 +1,4 @@
-import { IonToast } from '@ionic/react'
+import { IonButton, IonModal, IonToast } from '@ionic/react'
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { ESTADO_EXAMENES, LOCAL_STORAGE_STATES } from '../../constants/costants'
@@ -12,11 +12,11 @@ const Card: React.FC<Examen> = (examen: Examen) => {
   const storageJobs = StorageJobs.getInstance()
   const history = useHistory()
   const [showToast, setShowToast] = useState(false)
+  const [showModal, setShowModal] = useState(false)
   const [textToast, setTextToast] = useState('')
-  const optionExamns = async (): Promise<void> => {
+  const optionExamns = (): void => {
     if (estado === ESTADO_EXAMENES.activo) {
-      history.push('/exam')
-      await storageJobs.setObject(LOCAL_STORAGE_STATES.examen_activo, examen)
+      setShowModal(true)
     } else if (estado === ESTADO_EXAMENES.pendiente) {
       setTextToast('LA EVALUACION ESTA PENDIENTE DE ACTIVACION')
       setShowToast(true)
@@ -27,8 +27,19 @@ const Card: React.FC<Examen> = (examen: Examen) => {
     }
   }
 
+  const iniciarExamen = async (): Promise<void> => {
+    setShowModal(false)
+    await storageJobs.setObject(LOCAL_STORAGE_STATES.examen_activo, examen)
+    history.push('/exam')
+  }
+
   return (
-    <div className="card" onClick={async () => await optionExamns()}>
+    <div className="card" onClick={() => optionExamns()}>
+      <IonModal isOpen={showModal} cssClass='my-custom-class'>
+        <p>This is modal content</p>
+        <IonButton onClick={async () => await iniciarExamen()}>Close Modal</IonButton>
+        <IonButton onClick={() => setShowModal(false)}>Close Modal</IonButton>
+      </IonModal>
       <h2 className="card__title">{nombre}</h2>
       <div className="card__details">
         <div className="card__item">

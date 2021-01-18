@@ -45,8 +45,8 @@
 
 .opcion h6 {
   margin:2px auto;
-
   font-weight: bold;
+  font-size: 0.7em;
 }
 
 .paginador {
@@ -191,6 +191,6 @@
  
 }
 .descripcion-imagen-pregunta img{
-  max-height: 50vh;
+  max-height: 30vh;
   height: 100%;
 }

@@ -38,16 +38,14 @@ const App: React.FC = () => {
   const socketIO = SocketIO.getInstance()
   const statusNetwork = useSelector(store => state.getState().networkStatus)
 
-  socketIO.on('group/1', (data: any) => {
-    console.log(data) // data es el objeto de notificacion
-    notifications.schedule(0, 0, data.mensaje, data.tipo, data.title)
-  })
-
   const storageJobs = StorageJobs.getInstance()
   const [token, setToken] = useState(false)
   const [loader, setLoader] = useState(true)
   // const [loader, setLoader] = useState(true)
   useEffect(() => {
+    socketIO.on('group/1', (data: any) => {
+      notifications.schedule(0, 0, data.mensaje, data.tipo, data.title)
+    })
     validarSession()
   }, [])
   const validarSession = async (): Promise<void> => {

@@ -14,7 +14,7 @@ export const validarQuiz = (quiz: Examen, respondidas: any): responseValidate =>
     if (pregunta.multiple) {
       respuestas[key].respuestas = respondidas[pregunta.indice]
     } else {
-      if (!respondidas[pregunta.indice]) {
+      if (typeof respondidas[pregunta.indice] === 'undefined') {
         res.response = false
         res.mensaje = `DEBE COMPLETAR LA PREGUNTA ${pregunta.indice + 1}`
       } else {

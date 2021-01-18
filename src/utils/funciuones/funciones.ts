@@ -45,11 +45,7 @@ const segundosAHora = (time: number): string => {
 }
 
 const format00 = (numero: number): string => {
-  if (numero <= 9) {
-    return `0${numero}`
-  } else {
-    return `${numero}`
-  }
+  return `${(numero <= 9) ? '0' : ''}${numero}`
 }
 
 export {

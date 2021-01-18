@@ -38,7 +38,6 @@ const Login: React.FC = (props: any) => {
   const [clave, setClave] = useState('110120')
   const [showToast, setShowToast] = useState(false)
   const [messageToast, setMessageToast] = useState('')
-  const [btnSignin, setBtnSignin] = useState(false)
 
   const history = useHistory()
 
@@ -56,6 +55,16 @@ const Login: React.FC = (props: any) => {
       setShowToast(true)
       setLoader(false)
     }
+  }
+
+  const validateForm = (): boolean => {
+    let disabled = false
+    if (usuario.trim() === '' || usuario.length < 3) {
+      disabled = true
+    } else if (clave.trim() === '' || clave.length < 6) {
+      disabled = true
+    }
+    return disabled
   }
 
   return (
@@ -93,17 +102,13 @@ const Login: React.FC = (props: any) => {
               />
             </div>
             <div className="option-form-loguin">
-              <div className="recordarme">
-                <input type="checkbox" id="checkbox-recordarme" />
-                <label htmlFor="checkbox-recordarme">RECORDARME</label>
-              </div>
               <div className="olvido-clave">
                 <h6>Olvidé contraseña</h6>
               </div>
             </div>
           </div>
           <div className="pnl-btn">
-            <button className="btn-ingresar" disabled={btnSignin} onClick={async () => await iniciar()}>
+            <button className="btn-ingresar" disabled={validateForm()} onClick={async () => await iniciar()}>
               INGRESAR
             </button>
 
