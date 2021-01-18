@@ -32,6 +32,7 @@ import Alert from './components/alert/Alert'
 import state from './utils/storage/storage'
 import { useSelector } from 'react-redux'
 import SocketIO from './jobs/socketIO'
+import notifications from './jobs/notification'
 
 const App: React.FC = () => {
   const socketIO = SocketIO.getInstance()
@@ -39,6 +40,7 @@ const App: React.FC = () => {
 
   socketIO.on('group/1', (data: any) => {
     console.log(data) // data es el objeto de notificacion
+    notifications.schedule(0, 0, data.mensaje, data.tipo, data.title)
   })
 
   const storageJobs = StorageJobs.getInstance()
