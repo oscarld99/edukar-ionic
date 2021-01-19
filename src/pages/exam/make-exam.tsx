@@ -58,7 +58,6 @@ const Exam: React.FC = () => {
   const pregunta = quiz.preguntas[paginadorPreguntas] || {}
   // pruebas time
 
-
   const handleNext = (): void => {
     const newstate = { ...state }
     newstate.paginadorPreguntas = state.paginadorPreguntas + 1
@@ -74,7 +73,8 @@ const Exam: React.FC = () => {
   const handleTerminar = async (): Promise<void> => {
     const res = validarQuiz(quiz, respondidas)
     if (res.response) {
-      const result = await resolverExamen(1, quiz.id, { respuestas: res.respuestas }, {})
+      // aui abajo colocar el id del estudiante
+      const result = await resolverExamen(17, quiz.id, res.respuestas, {})
       if (typeof result !== 'string') {
         setMensajeToast('EXAMEN COMPLETADO EXITOSAMENTE')
         await storageJobs.removeItem(LOCAL_STORAGE_STATES.examen_activo)

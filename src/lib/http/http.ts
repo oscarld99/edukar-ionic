@@ -28,9 +28,9 @@ const get = async <T>(url: string): Promise<ResponseWS<T>> => {
     }
     if (String(error).includes('Failed to fetch')) {
       data.data.mensajeError = MESSAGES_HTTP.NETWORK_ERROR
-      throw new ErrorResponseHttp('POST', data)
+      throw new ErrorResponseHttp('GET', data)
     }
-    throw new ErrorResponseHttp('POST', data)
+    throw new ErrorResponseHttp('GET', data)
   }
 }
 
@@ -78,7 +78,7 @@ const put = async <T>(url: string, body: any): Promise<ResponseWS<T>> => {
       status: response.status,
       data: resp
     }
-    if (!SuccessResponseStatus.includes(response.status)) throw new ErrorResponseHttp('POST', data)
+    if (!SuccessResponseStatus.includes(response.status)) throw new ErrorResponseHttp('PUT', data)
     return data
   } catch (error) {
     const data = {
@@ -87,9 +87,9 @@ const put = async <T>(url: string, body: any): Promise<ResponseWS<T>> => {
     }
     if (String(error).includes('Failed to fetch')) {
       data.data.mensajeError = MESSAGES_HTTP.NETWORK_ERROR
-      throw new ErrorResponseHttp('POST', data)
+      throw new ErrorResponseHttp('PUT', data)
     }
-    throw new ErrorResponseHttp('POST', data)
+    throw new ErrorResponseHttp('PUT', data)
   }
 }
 
@@ -105,7 +105,7 @@ const _delete = async <T>(url: string): Promise<ResponseWS<T>> => {
       status: response.status,
       data: resp
     }
-    if (!SuccessResponseStatus.includes(response.status)) throw new ErrorResponseHttp('POST', data)
+    if (!SuccessResponseStatus.includes(response.status)) throw new ErrorResponseHttp('DELETE', data)
     return data
   } catch (error) {
     const data = {
@@ -114,9 +114,9 @@ const _delete = async <T>(url: string): Promise<ResponseWS<T>> => {
     }
     if (String(error).includes('Failed to fetch')) {
       data.data.mensajeError = MESSAGES_HTTP.NETWORK_ERROR
-      throw new ErrorResponseHttp('POST', data)
+      throw new ErrorResponseHttp('DELETE', data)
     }
-    throw new ErrorResponseHttp('POST', data)
+    throw new ErrorResponseHttp('DELETE', data)
   }
 }
 
