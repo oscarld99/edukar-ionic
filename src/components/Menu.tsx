@@ -40,7 +40,7 @@ const Menu: React.FC = () => {
   }
 
   const sitiOficial = (): void => {
-    window.open('https://edukarr.netlify.app/', '_system')
+    window.open('https://demo-edukar.netlify.app/', '_system')
   }
 
   return (
@@ -60,7 +60,7 @@ const Menu: React.FC = () => {
           <div className="img-user">
             <img src={Usuario} alt="user-edukar" />
           </div>
-          <IonListHeader className="text-user">OSCAR DAVID LORA DE SALES</IonListHeader>
+          <IonListHeader className="text-user">OSCAR PEREZ</IonListHeader>
           {appPages.map((appPage, index) => {
             if (appPage.title === '') {
               return null

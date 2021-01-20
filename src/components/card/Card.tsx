@@ -1,5 +1,5 @@
 import { IonButton, IonButtons, IonIcon, IonModal, IonTitle, IonToast, IonToolbar } from '@ionic/react'
-import { arrowForward, arrowUndo, arrowUp, close, helpCircle, personCircle } from 'ionicons/icons'
+import { arrowForward, close } from 'ionicons/icons'
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { ESTADO_EXAMENES, LOCAL_STORAGE_STATES } from '../../constants/costants'
@@ -35,7 +35,7 @@ const Card: React.FC<Examen> = (examen: Examen) => {
   }
   return (
     <div >
-      <IonModal isOpen={showModal} cssClass='my-custom-class'>
+      <IonModal isOpen={showModal} cssClass='my-custom-class' >
         <IonToolbar>
           <IonButtons slot="secondary">
             <IonButton fill="solid" color="danger" onClick={() => setShowModal(false)}>
@@ -52,21 +52,31 @@ const Card: React.FC<Examen> = (examen: Examen) => {
           </IonButtons>
         </IonToolbar>
         <div className="body-modal">
-          <div className="row">
-            <h5 className="modal-label">Codigo:</h5>
-            <h5 className="modal-data">{codigo || 'SAJH67'}</h5>
+          <div className="modal-info-exam border-info">
+            <div className="row">
+              <h5 className="modal-label">Codigo:</h5>
+              <h5 className="modal-data border-bottom" >{codigo || 'SAJH67'}</h5>
+            </div>
+            <div className="row">
+              <h5 className="modal-label">Nombre:</h5>
+              <h5 className="modal-data border-bottom">{nombre}</h5>
+            </div>
           </div>
-          <div className="row">
-            <h5 className="modal-label">Nombre:</h5>
-            <h5 className="modal-data">{nombre}</h5>
-          </div>
-          <div className="row">
-            <h5 className="modal-label">Observaciones:</h5>
+          <h5 className="modal-label">Observaciones:</h5>
+          <div className="modal-info-exam border-info">
             <h5 className="modal-data">{observaciones}</h5>
           </div>
           <div className="row">
-            <h5 className="modal-label">Codigo:</h5>
-            <h5 className="modal-data">{codigo || 'SAJH67'}</h5>
+            <h5 className="modal-label">tiempo:</h5>
+            <div className="modal-info-exam border-info">
+              <h5 className="modal-data">{formatDuration(tiempo)}</h5>
+            </div>
+          </div>
+          <div className="row">
+            <h5 className="modal-label">preguntas:</h5>
+            <div className="modal-info-exam border-info">
+              <h5 className="modal-data">{preguntas.length}</h5>
+            </div>
           </div>
         </div>
       </IonModal>

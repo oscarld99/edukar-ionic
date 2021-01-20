@@ -1,10 +1,29 @@
 .form{
   padding: 10px;
+  background-image: url("../../assets/images/topFondoe.png");
+  background-repeat: no-repeat;
 }
 
 .header {
-  margin: 0px 10px;
+  margin: 10px 10px;
   overflow: hidden;
+}
+
+.banner-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.banner-header img{
+  width: 20%;
+  margin-top: 5%;
+  margin-left: 10%;
+}
+.banner-header h3{
+  color: #fff;
+  font-weight: bold;
+  margin-right: 10%;
 }
 
 .info-exam {

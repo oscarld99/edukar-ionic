@@ -18,24 +18,23 @@ import { LOCAL_STORAGE_STATES } from '../../constants/costants'
 import Loader from '../../components/loader/Loader'
 const { App } = Plugins
 
+let counter = 1
 const Login: React.FC = (props: any) => {
   const storageJobs = StorageJobs.getInstance()
   const [loader, setLoader] = useState(false)
-  const [counter, setCounter] = useState(0)
   document.addEventListener('ionBackButton', () => {
-    if (props.location.pathname === '/login') {
-      if (counter) {
-        App.exitApp()
-      } else {
-        setTimeout(() => {
-          setCounter(0)
-        }, 5000)
-        setCounter(1)
-      }
+    if (counter === 2) {
+      counter = 1
+      App.exitApp()
+    } else {
+      counter = 2
+      setTimeout(() => {
+        counter = 1
+      }, 1000)
     }
   })
-  const [usuario, setUsuario] = useState('oscarito')
-  const [clave, setClave] = useState('110120')
+  const [usuario, setUsuario] = useState('ESTUDIANTE1')
+  const [clave, setClave] = useState('123456')
   const [showToast, setShowToast] = useState(false)
   const [messageToast, setMessageToast] = useState('')
 
@@ -121,7 +120,7 @@ const Login: React.FC = (props: any) => {
             color='danger'
           />
           <IonToast
-            isOpen={counter === 1}
+            isOpen={counter === 2}
             message="Dar otra vez atras para salir."
             duration={200}
           />

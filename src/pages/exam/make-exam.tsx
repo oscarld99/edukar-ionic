@@ -10,7 +10,7 @@ import Loader from '../../components/loader/Loader'
 import { useHistory } from 'react-router'
 import resolverExamen from '../../services/examenes/resolverExamen'
 import { validarClases, validarQuiz } from './make-exam.validate'
-
+import Imglogo from '../../assets/images/logo.png'
 let time = 60
 const Exam: React.FC = () => {
   const storageJobs = StorageJobs.getInstance()
@@ -21,6 +21,7 @@ const Exam: React.FC = () => {
     paginadorPreguntas: 0,
     respondidas: []
   })
+  const [loaderPost, setLoaderPost] = useState(false)
   const [loader, setLoader] = useState(true)
   const [toast, setToast] = useState(false)
   const [mensajeToast, setMensajeToast] = useState('')
@@ -71,10 +72,11 @@ const Exam: React.FC = () => {
   }
 
   const handleTerminar = async (): Promise<void> => {
+    setLoaderPost(true)
     const res = validarQuiz(quiz, respondidas)
     if (res.response) {
       // aui abajo colocar el id del estudiante
-      const result = await resolverExamen(17, quiz.id, res.respuestas, {})
+      const result = await resolverExamen(19, quiz.id, res.respuestas, {})
       if (typeof result !== 'string') {
         setMensajeToast('EXAMEN COMPLETADO EXITOSAMENTE')
         await storageJobs.removeItem(LOCAL_STORAGE_STATES.examen_activo)
@@ -86,6 +88,7 @@ const Exam: React.FC = () => {
     } else {
       setMensajeToast(res.mensaje)
     }
+    setLoaderPost(true)
     setLoader(false)
     setToast(true)
   }
@@ -133,8 +136,13 @@ const Exam: React.FC = () => {
       <IonContent fullscreen>
         {
           loader
-            ? <Loader classStyle="loader--show"></Loader>
+            ? <Loader classStyle='loader--show loader--transparent'> </Loader>
             : <div className="form">
+              <Loader classStyle={loaderPost ? 'loader--show loader--transparent' : ''}> </Loader>
+              <div className="banner-header">
+                <img src={Imglogo} alt='logo-edukar' />
+                <h3>EVALUACIONES</h3>
+              </div>
               <section className="header">
                 <div className="title-exam">
                   <h3 >{quiz.nombre}</h3>
@@ -222,7 +230,7 @@ const Exam: React.FC = () => {
         }
 
       </IonContent>
-    </IonPage>
+    </IonPage >
   )
 }
 

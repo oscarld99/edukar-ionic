@@ -1,12 +1,14 @@
 import { IonIcon, IonItem, IonLabel, IonList } from '@ionic/react'
 import { newspaper } from 'ionicons/icons'
 import React, { useEffect, useState } from 'react'
+import Loader from '../../components/loader/Loader'
 import { Notas } from '../../interfaces/examenes'
 import resultadosServices from '../../services/examenes/resultadosServices'
 import './notas.css'
 
 const NotasComponent: React.FC = () => {
   const [modoInfo, setModoInfo] = useState(false)
+  const [loader, setLoader] = useState(true)
   const [notas, setNotas] = useState<Notas[]>([])
   const [detalles, setDetalles] = useState<any>({})
 
@@ -15,12 +17,13 @@ const NotasComponent: React.FC = () => {
   }, [])
 
   const buscarDatos = async (): Promise<void> => {
-    const result = await resultadosServices(17)
+    const result = await resultadosServices(19)
     if (typeof result !== 'string') {
       setNotas(result)
     } else {
       // TODO: ERRORES
     }
+    setLoader(false)
   }
 
   const showInformation = (data: any): void => {
@@ -34,6 +37,7 @@ const NotasComponent: React.FC = () => {
 
   return (
     <div className="main-notas">
+      <Loader classStyle={loader ? 'loader--show loader--transparent' : ''} >Consultando resultados</Loader>
       {
         modoInfo
           ? <div className="container-notas">
@@ -56,7 +60,7 @@ const NotasComponent: React.FC = () => {
 
           </div>
           : <div className="info-notas">
-            <IonList className="list-notas">
+            <IonList className={notas.length > 0 ? 'list-notas' : ''}>
               {
                 notas.map((nota) => {
                   return (
