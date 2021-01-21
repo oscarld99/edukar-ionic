@@ -5,12 +5,11 @@ import Usuario from '../../assets/images/usuario.png'
 import Loader from '../../components/loader/Loader'
 import { LOCAL_STORAGE_STATES } from '../../constants/costants'
 import { User } from '../../interfaces/AccessInterfaces'
-import StorageJobs from '../../jobs/Storage'
 import PerfilService from '../../services/usuario/usuario.services'
+import { getObjectStorage, setObjectStorage } from '../../utils/storage/AsyncStorage'
 import './perfil.css'
 
 const Perfil: React.FC = () => {
-  const storageJobs = StorageJobs.getInstance()
   const [id, setId] = useState(0)
   const [nombres, setnombres] = useState('')
   const [apellidos, setApellidos] = useState('')
@@ -25,10 +24,10 @@ const Perfil: React.FC = () => {
   // obtener data usuario
   useEffect(() => {
     obtenerData()
-  })
+  }, [])
 
   const obtenerData = async (): Promise<void> => {
-    const dataUsuario = await storageJobs.getObject<User>(LOCAL_STORAGE_STATES.usuario)
+    const dataUsuario = await getObjectStorage<User>(LOCAL_STORAGE_STATES.usuario)
     if (dataUsuario !== null) {
       setId(dataUsuario.id)
       setnombres(dataUsuario.nombres)
@@ -43,7 +42,7 @@ const Perfil: React.FC = () => {
     setModeUpdate(true)
   }
 
-  const guardarExamen = async (): Promise<void> => {
+  const actualizarData = async (): Promise<void> => {
     setLoader(true)
     const result = await PerfilService({
       id,
@@ -53,8 +52,10 @@ const Perfil: React.FC = () => {
       correo,
       telefono
     })
+    console.log(result)
     if (typeof result !== 'string') {
-      await storageJobs.setObject(LOCAL_STORAGE_STATES.usuario, result)
+      await setObjectStorage(LOCAL_STORAGE_STATES.usuario, result)
+      setModeUpdate(false)
     } else {
       const message = result
       setMessageToast(message)
@@ -131,7 +132,7 @@ const Perfil: React.FC = () => {
           modeUpdate
             ? [
               <button className="btn-perfil btn-cancelar" onClick={() => setModeUpdate(false)}>CANCELAR</button>,
-              <button className="btn-perfil btn-guardar" onClick={async () => await guardarExamen()}>GUARDAR</button>
+              <button className="btn-perfil btn-guardar" onClick={async () => await actualizarData()}>GUARDAR</button>
             ]
             : <button className="btn-perfil btn-actualizar" onClick={async () => await actualizarDatos()}>ACTUALIZAR</button>
         }

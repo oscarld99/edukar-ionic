@@ -92,8 +92,7 @@ ion-menu.ios ion-list#labels-list ion-list-header {
   margin-bottom: 8px;
 }
 
-ion-menu.ios ion-list-header,
-ion-menu.ios ion-note {
+ion-menu.ios ion-list-header, ion-menu.ios ion-note {
   padding-left: 16px;
   padding-right: 16px;
 }
@@ -110,19 +109,55 @@ ion-note {
 
 ion-item.selected {
   --color: var(--ion-color-primary);
-} 
-
-.inbox-list{
-
 }
-.btn-loguot{
+
+.btn-loguot {
   display: block;
   margin: auto;
 }
 
-.inbox-settings{
+.inbox-settings {
   padding: 10px !important;
 }
-.text-user{
+
+.text-user {
   text-align: center;
+}
+
+.text-user h5 {
+  font-weight: bold;
+  color: #fff;
+}
+
+.menu {
+  background-color: #0984e3;
+}
+.back-menu{
+  background-color: #0984e3;
+  height: 100%;
+}
+
+#inbox-list {
+  background-color: #0984e3;
+}
+
+.div-item{
+  background-color: #0984e3 ;
+  width: 100%;
+  margin: 0;
+  padding: 5px 10px;
+  color: #fff;
+  display: flex;
+  margin: 10px;
+}
+
+.div-item h5{
+  display: inline-block;
+  margin: 0 15px;
+}
+
+hr{
+  border: 1px solid #fff;
+  margin: 11px 7px;
+  background-color: #fff;
 }

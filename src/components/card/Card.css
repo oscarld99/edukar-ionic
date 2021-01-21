@@ -59,3 +59,20 @@
   padding-bottom: .5em;
   border-bottom: 1px solid;
 }
+
+.container-notas {
+  display: flex;
+  justify-content: space-between;
+}
+
+.container-notas h5 {
+  font-weight: bold;
+  font-size: 1.3em;
+  color: gray;
+}
+
+.nt {}
+
+.number {
+  text-align: right;
+}
