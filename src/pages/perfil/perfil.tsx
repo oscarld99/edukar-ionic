@@ -1,12 +1,12 @@
 import { IonIcon, IonToast } from '@ionic/react'
 import { person, mail, call, card } from 'ionicons/icons'
 import React, { useEffect, useState } from 'react'
-import Usuario from '../../assets/images/usuario.png'
 import Loader from '../../components/loader/Loader'
 import { LOCAL_STORAGE_STATES } from '../../constants/costants'
 import { User } from '../../interfaces/AccessInterfaces'
 import PerfilService from '../../services/usuario/usuario.services'
 import { getObjectStorage, setObjectStorage } from '../../utils/storage/AsyncStorage'
+import Userimg from '../../assets/images/profile.svg'
 import './perfil.css'
 
 const Perfil: React.FC = () => {
@@ -68,7 +68,7 @@ const Perfil: React.FC = () => {
     <div className="main-perfil">
       <Loader classStyle={loader ? 'loader--show loader--transparent' : ''} />
       <div className="img-user">
-        <img src={Usuario} alt="user-edukar" />
+        <img src={Userimg} alt="user-edukar" />
       </div>
       <div className="info-user">
         <div className="input-group">

@@ -16,6 +16,18 @@
     margin: auto;
 }
 
+
+.img-user-login{
+    padding-top: 10%;
+    max-width: 50%;
+    margin: auto;
+}
+
+.img-user-login img{
+  width: 100%  !important;
+  height: 100%  !important;
+}
+
 .form-loguin {
     padding-top: 10%;
 }

@@ -13,13 +13,12 @@ import React, { useEffect, useState } from 'react'
 import { useHistory, useLocation } from 'react-router-dom'
 
 import { appPages } from '../pages/routes'
-import Usuario from '../assets/images/usuario.png'
 import './Menu.css'
 import StorageJobs from '../jobs/Storage'
 import { getObjectStorage } from '../utils/storage/AsyncStorage'
 import { User } from '../interfaces/AccessInterfaces'
 import { LOCAL_STORAGE_STATES } from '../constants/costants'
-
+import Userimg from '../assets/images/profile.svg'
 const Menu: React.FC = () => {
   const history = useHistory()
   const storageJobs = StorageJobs.getInstance()
@@ -66,7 +65,7 @@ const Menu: React.FC = () => {
 
         <IonList id="inbox-list">
           <div className="img-user">
-            <img src={Usuario} alt="user-edukar" />
+            <img src={Userimg} alt="user-edukar" />
           </div>
           <div className="text-user">
             <h5 > {usuario ? (usuario.nombres + ' ' + usuario.apellidos) : ''}</h5>

@@ -76,7 +76,7 @@ const Login: React.FC = (props: any) => {
           <div className="img-logo">
             <img src={Logologin} alt="logo-edukar" />
           </div>
-          <div className="img-user">
+          <div className="img-user-login">
             <img src={Usuario} alt="user-edukar" />
           </div>
           <div className="form-loguin">
