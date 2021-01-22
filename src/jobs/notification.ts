@@ -3,7 +3,7 @@ import { newspaper } from 'ionicons/icons'
 const { LocalNotifications } = Plugins
 
 class Notifications {
-  public async schedule(hour: number, minute: number, mensaje: string, tipo: number, title: string): Promise<void> {
+  public async schedule (hour: number, minute: number, mensaje: string, tipo: number, title: string): Promise<void> {
     try {
       // Request/ check permissions
       if (!(await LocalNotifications.requestPermission()).granted) return

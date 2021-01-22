@@ -53,9 +53,15 @@ const Card: React.FC<Examen> = (examen: Examen) => {
         </IonToolbar>
         <div className="body-modal">
           <div className="modal-info-exam border-info">
-            <div className="row">
-              <h5 className="modal-label">Codigo:</h5>
-              <h5 className="modal-data border-bottom" >{codigo || 'SAJH67'}</h5>
+            <div className="modal-info-exam border-info">
+              <div className="row">
+                <h5 className="modal-label">Codigo:</h5>
+                <h5 className="modal-data border-bottom" >{codigo || 'SAJH67'}</h5>
+              </div>
+              <div className="row">
+                <h5 className="modal-label">Nombre:</h5>
+                <h5 className="modal-data border-bottom">{nombre}</h5>
+              </div>
             </div>
             <div className="row">
               <h5 className="modal-label">Nombre:</h5>

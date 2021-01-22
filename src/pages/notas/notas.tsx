@@ -3,6 +3,7 @@ import Acordion from '../../components/accordion/acordion'
 import Loader from '../../components/loader/Loader'
 import { Notas } from '../../interfaces/examenes'
 import resultadosServices from '../../services/examenes/resultadosServices'
+import { obtenerIdEstudiante } from '../../utils/funciuones/funciones'
 import './notas.css'
 
 const NotasComponent: React.FC = () => {
@@ -14,7 +15,8 @@ const NotasComponent: React.FC = () => {
   }, [])
 
   const buscarDatos = async (): Promise<void> => {
-    const result = await resultadosServices(19)
+    const id = await obtenerIdEstudiante()
+    const result = await resultadosServices(id)
     if (typeof result !== 'string') {
       setNotas(result)
     } else {

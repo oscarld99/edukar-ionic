@@ -2,9 +2,11 @@ import { IonIcon } from '@ionic/react'
 import { search } from 'ionicons/icons'
 import React, { useEffect, useState } from 'react'
 import Card from '../../components/card/Card'
+import CardExamenes from '../../components/cardExamenes/cardExamenes'
 import Loader from '../../components/loader/Loader'
 import { Examen } from '../../interfaces/examenes'
 import examenesServices from '../../services/examenes/examenesServices'
+import '../../assets/styles/normalize.css'
 import './examenes.css'
 const Examenes: React.FC = () => {
   const [buscador, setBuscador] = useState('')
@@ -43,7 +45,7 @@ const Examenes: React.FC = () => {
       <div className="contenedor-examenes">
         {
           examenes.map((examen) => (
-            <Card {...examen} key={examen.id}></Card>
+            <CardExamenes {...examen} key={examen.id}></CardExamenes>
           ))
         }
         {/*

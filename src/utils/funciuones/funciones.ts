@@ -1,3 +1,7 @@
+import { LOCAL_STORAGE_STATES } from '../../constants/costants'
+import { User } from '../../interfaces/AccessInterfaces'
+import { getObjectStorage } from '../storage/AsyncStorage'
+
 const formatDuration = (minutes: number): string => {
   const hourToMinutes = (hour: number): number => Math.round(hour * 60)
 
@@ -7,7 +11,8 @@ const formatDuration = (minutes: number): string => {
   if (durationInHours < 1) {
     durationString = `${(hourToMinutes(durationInHours))} minuto(s)`
   } else {
-    durationString = `${Math.trunc(durationInHours)} hora(s) y ${(hourToMinutes(durationInHours - Math.trunc(durationInHours)))} minuto(s)`
+    const minutes = (hourToMinutes(durationInHours - Math.trunc(durationInHours)))
+    durationString = `${Math.trunc(durationInHours)} hora(s) ${(minutes > 0) ? (`y ${minutes} minuto(s)`) : ''}`
   }
   return durationString
 }
@@ -27,6 +32,11 @@ const formatLocalDateTime = (dateTimeString: string | Date): string => {
     dateTimeString = dateTimeString.toISOString()
   }
   return dateTimeString.slice(0, 16)
+}
+
+export const obtenerIdEstudiante = async (): Promise<number> => {
+  const { id } = await getObjectStorage<User>(LOCAL_STORAGE_STATES.usuario)
+  return id
 }
 
 const segundosAHora = (time: number): string => {

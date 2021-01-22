@@ -5,7 +5,7 @@ import { imgExamenes, serverMultimedia } from '../../constants/configuration'
 import StorageJobs from '../../jobs/Storage'
 import { DEFAULT_EXAM, LOCAL_STORAGE_STATES } from '../../constants/costants'
 import { Examen } from '../../interfaces/examenes'
-import { segundosAHora } from '../../utils/funciuones/funciones'
+import { obtenerIdEstudiante, segundosAHora } from '../../utils/funciuones/funciones'
 import Loader from '../../components/loader/Loader'
 import { useHistory } from 'react-router'
 import resolverExamen from '../../services/examenes/resolverExamen'
@@ -75,8 +75,8 @@ const Exam: React.FC = () => {
     setLoaderPost(true)
     const res = validarQuiz(quiz, respondidas)
     if (res.response) {
-      // aui abajo colocar el id del estudiante
-      const result = await resolverExamen(19, quiz.id, res.respuestas, {})
+      const id = await obtenerIdEstudiante()
+      const result = await resolverExamen(id, quiz.id, res.respuestas, {})
       if (typeof result !== 'string') {
         setMensajeToast('EXAMEN COMPLETADO EXITOSAMENTE')
         await storageJobs.removeItem(LOCAL_STORAGE_STATES.examen_activo)

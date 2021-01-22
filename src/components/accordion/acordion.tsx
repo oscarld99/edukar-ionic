@@ -5,7 +5,6 @@ import './acordion.css'
 const Acordion: React.FC<Notas> = (nota: Notas) => {
   const [open, setOpen] = useState(false)
 
-
   return (
     <div className="container-acordion" onClick={() => setOpen(!open)}>
       <button className="accordion">{nota.titulo_cuestionario}</button>
@@ -16,7 +15,8 @@ const Acordion: React.FC<Notas> = (nota: Notas) => {
         </div>
         <hr />
         <div className="container-observaciones">
-          <p>{nota.observaciones}</p>
+          <h3>observaciones:</h3>
+          <p>{nota.observaciones || 'SIN OBSERVACIONES'} </p>
         </div>
       </div>
     </div >

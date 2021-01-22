@@ -126,27 +126,17 @@ ion-item.selected {
 
 .text-user h5 {
   font-weight: bold;
-  color: #fff;
+  color: #000;
 }
 
-.menu {
-  background-color: #0984e3;
-}
-.back-menu{
-  background-color: #0984e3;
-  height: 100%;
-}
 
-#inbox-list {
-  background-color: #0984e3;
-}
 
 .div-item{
   background-color: #0984e3 ;
   width: 100%;
   margin: 0;
   padding: 5px 10px;
-  color: #fff;
+  color: #000;
   display: flex;
   margin: 10px;
 }

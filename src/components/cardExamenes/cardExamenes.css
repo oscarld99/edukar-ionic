@@ -1,0 +1,127 @@
+*{
+
+  font-family: 'Yusei Magic', sans-serif;
+  font-weight: 100;
+  
+}
+.title-1{
+  color: #fff;
+  text-transform: uppercase;
+  
+}
+
+.flex__container-1{
+  background:linear-gradient(#075da0, #00A9DD);
+  width: 85%;
+  border-radius: 2%;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: auto;
+  margin-top: 20px;
+  position: relative;
+}
+
+.container__title-1{
+  color: #fff;
+  text-align: center;
+  font-size: 5px;
+  width: 100%;
+  font-size: 13px;
+  margin-bottom: 7px;
+  margin-top: 6px;
+  padding:  8px 0 3px 0;
+}
+
+.container-info{
+  color: #fff;
+  flex: 1;
+  width: 100%;
+  padding: 6px;
+  margin-top: -7px;
+  margin-left: 15px;
+  
+}
+
+.info{
+  display: inline-block;
+  font-size: 0.8em;
+  width: 40%;
+}
+
+
+
+.info-user{
+  color: #fff;
+  font-size: 0.9em;
+  text-align: left;
+  border:  none;
+  width: 100%;
+  padding: 3px;
+  
+}
+
+.hr-title{
+  display: flex;
+  height: 2px;
+  background-color: #06b0e9;
+  width: 94%;   
+  margin-left: 2%;
+  border: none;
+}
+
+.hr-info{
+  width: 99%;
+  border: 0.5px dashed rgba(255,255,255,0.5);
+  position: absolute;
+  margin-left: -21px;
+  margin-top: 10px;
+  height: 0;
+  flex: 1;
+  background: none;
+  
+}
+.card__details .card__item {
+ display: flex;
+ justify-content: space-between;
+ margin-bottom: .5em;
+}
+
+.card__label {
+ font-size: .75em;
+}
+
+.card__info {
+ font-size: .9em;
+}
+
+.body-modal {
+ padding: 10px
+}
+
+.border-info {
+ border: 1px solid #0984e3;
+ border-radius: 7px;
+ padding: 7px;
+ margin: 10px;
+}
+
+.modal-data, .modal-label {
+ font-weight: bold;
+}
+
+.modal-label {
+ color: #0984e3;
+ font-size: .85em;
+}
+
+.modal-data {
+ text-align: center;
+ color: rgba(0, 0, 0, .65);
+}
+
+.border-bottom {
+  padding-bottom: .5em;
+  border-bottom: 1px solid;
+}
